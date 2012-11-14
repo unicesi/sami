@@ -8,9 +8,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import co.edu.unicesi.sami.bo.CursoBO;
+import co.edu.unicesi.sami.bo.MateriaBO;
 import co.edu.unicesi.sami.bo.MetaTerminalBO;
-import co.edu.unicesi.sami.entidades.Curso;
+import co.edu.unicesi.sami.entidades.Materia;
 import co.edu.unicesi.sami.entidades.Material;
 import co.edu.unicesi.sami.entidades.MetaTerminal;
 import co.edu.unicesi.sami.entidades.ObjetivoGeneral;
@@ -25,119 +25,100 @@ import co.edu.unicesi.sami.entidades.Unidad;
 public class GestionCursoBean implements GestionCursoRemote, GestionCursoLocal {
 
 	@PersistenceContext
-    EntityManager em;
+	EntityManager em;
 
-    @Override
-    public int agregarCurso( CursoBO curso )
-    {
-        Curso entidad = new Curso( );
-        int resp = -1;
-        try
-        {
-            entidad.setCodigo( curso.getCodigo( ) );
-            entidad.setNombre( curso.getNombre( ) );
-            entidad.setObjetivosGenerales( new ArrayList<ObjetivoGeneral>( ) );
-            entidad.setUnidades( new ArrayList<Unidad>( ) );
-            entidad.setObjetivosTerminales( new ArrayList<ObjetivoTerminal>( ) );
-            
-            em.persist( entidad );
-            em.flush( );
-            resp = 0;
-        }
-        catch( Exception e )
-        {
-            e.printStackTrace( );
-        }
+	@Override
+	public int agregarCurso(MateriaBO curso) {
+		Materia entidad = new Materia();
+		int resp = -1;
+		try {
+			entidad.setCodigo(curso.getCodigo());
+			entidad.setNombre(curso.getNombre());
+			entidad.setUnidades(new ArrayList<Unidad>());
+			entidad.setObjetivosTerminales(new ArrayList<ObjetivoTerminal>());
 
-        return resp;
+			em.persist(entidad);
+			em.flush();
+			resp = 0;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
-    }
+		return resp;
 
-    @Override
-    public int editarCurso( CursoBO curso )
-    {
-        int resp = -1;
-        try
-        {
-            Curso entidad = em.find( Curso.class, curso.getId( ) );
+	}
 
-            entidad.setNombre( curso.getNombre( ) );
-            entidad.setCodigo( curso.getCodigo( ) );
+	@Override
+	public int editarCurso(MateriaBO curso) {
+		int resp = -1;
+		try {
+			Materia entidad = em.find(Materia.class, curso.getId());
 
-            em.merge( entidad );
-            em.flush( );
-            resp = 1;
-        }
-        catch( Exception e )
-        {
-            e.printStackTrace( );
-        }
+			entidad.setNombre(curso.getNombre());
+			entidad.setCodigo(curso.getCodigo());
 
-        return resp;
-    }
+			em.merge(entidad);
+			em.flush();
+			resp = 1;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
-    @Override
-    public CursoBO buscarCurso( int idCurso )
-    {
-        Curso curso = em.find( Curso.class, idCurso );
-        em.refresh( curso );
+		return resp;
+	}
 
-        CursoBO bo = new CursoBO( );
+	@Override
+	public MateriaBO buscarCurso(int idCurso) {
+		Materia curso = em.find(Materia.class, idCurso);
+		em.refresh(curso);
 
-        bo.setId( idCurso );
-        bo.setCodigo( curso.getCodigo( ) );
-        bo.setNombre( curso.getNombre( ) );
+		MateriaBO bo = new MateriaBO();
 
-        if( curso.getObjetivosGenerales( ).size( ) > 0 )
-        {
-            bo.setIdObjGeneral( curso.getObjetivosGenerales( ).get( 0 ).getId( ) );
-            bo.setContenidoObjGeneral( curso.getObjetivosGenerales( ).get( 0 ).getContenido( ) );
-        }
+		bo.setId(idCurso);
+		bo.setCodigo(curso.getCodigo());
+		bo.setNombre(curso.getNombre());
+		bo.setContenidoObjGeneral(curso.getObjetivosGenerales().get(0)
+				.getContenido());
 
-        List<Integer> unidades = new ArrayList<Integer>( );
-        for( Unidad u : curso.getUnidades( ) )
-        {
-            unidades.add( u.getId( ) );
-        }
-        bo.setUnidades( unidades );
+		List<Integer> unidades = new ArrayList<Integer>();
+		for (Unidad u : curso.getUnidades()) {
+			unidades.add(u.getId());
+		}
+		bo.setUnidades(unidades);
 
-        List<Integer> objTerminales = new ArrayList<Integer>( );
-        for( ObjetivoTerminal ot : curso.getObjetivosTerminales( ) )
-        {
-            objTerminales.add( ot.getId( ) );
-        }
-        bo.setObjTerminales( objTerminales );
+		List<Integer> objTerminales = new ArrayList<Integer>();
+		for (ObjetivoTerminal ot : curso.getObjetivosTerminales()) {
+			objTerminales.add(ot.getId());
+		}
+		bo.setObjTerminales(objTerminales);
 
-        List<Integer> materiales = new ArrayList<Integer>( );
-        for( Material m : curso.getMateriales( ) )
-        {
-            materiales.add( m.getId( ) );
-        }
-        bo.setMateriales( materiales );
+		List<Integer> materiales = new ArrayList<Integer>();
+		for (Material m : curso.getMateriales()) {
+			materiales.add(m.getId());
+		}
+		bo.setMateriales(materiales);
 
-        return bo;
-    }
+		return bo;
+	}
 
-    @Override
-    public List<CursoBO> listarCursos( )
-    {
-        String query = "SELECT c FROM Curso c";
-        Query q = em.createQuery( query );
-        List<Curso> cursos = q.getResultList( );
+	@Override
+	public List<MateriaBO> listarCursos() {
+		String query = "SELECT c FROM Materia c";
+		Query q = em.createQuery(query);
+		List<Materia> cursos = q.getResultList();
 
-        List<CursoBO> cursosBO = new ArrayList<CursoBO>( );
+		List<MateriaBO> cursosBO = new ArrayList<MateriaBO>();
 
-        for( Curso c : cursos )
-        {
-            CursoBO bo = new CursoBO( );
+		for (Materia c : cursos) {
+			MateriaBO bo = new MateriaBO();
 
-            bo.setId( c.getId( ) );
-            bo.setCodigo( c.getCodigo( ) );
-            bo.setNombre( c.getNombre( ) );
+			bo.setId(c.getCodigo());
+			bo.setCodigo(c.getCodigo());
+			bo.setNombre(c.getNombre());
 
-            cursosBO.add( bo );
-        }
+			cursosBO.add(bo);
+		}
 
-        return cursosBO;
-    }
+		return cursosBO;
+	}
 }

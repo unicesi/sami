@@ -3,12 +3,12 @@ package co.edu.unicesi.sami.client.home;
 import java.util.ArrayList;
 import java.util.List;
 
-import co.edu.unicesi.sami.bo.CursoBO;
+import co.edu.unicesi.sami.bo.MateriaBO;
 import co.edu.unicesi.sami.client.controller.DTEvent;
 import co.edu.unicesi.sami.client.curso.CursoService;
 import co.edu.unicesi.sami.client.curso.CursoServiceAsync;
 import co.edu.unicesi.sami.client.internationalization.MultiLingualConstants;
-import co.edu.unicesi.sami.client.model.CursoModel;
+import co.edu.unicesi.sami.client.model.MateriaModel;
 
 import com.extjs.gxt.ui.client.Style.HorizontalAlignment;
 import com.extjs.gxt.ui.client.event.Events;
@@ -32,11 +32,11 @@ public class PanelCursos extends LayoutContainer
     private final static MultiLingualConstants MultiLingualConstants = GWT.create( MultiLingualConstants.class );
     private final CursoServiceAsync cursoService = GWT.create( CursoService.class );
 
-    private Grid<CursoModel> gridCursos;
+    private Grid<MateriaModel> gridCursos;
 
     public PanelCursos( )
     {
-        gridCursos = new Grid<CursoModel>( new ListStore<CursoModel>( ), getColumnModel( ) );
+        gridCursos = new Grid<MateriaModel>( new ListStore<MateriaModel>( ), getColumnModel( ) );
         gridCursos.setBorders( true );
         gridCursos.setStripeRows( true );
 
@@ -56,10 +56,10 @@ public class PanelCursos extends LayoutContainer
 
     private void cargarCursos( )
     {       
-        cursoService.listarCursos( new AsyncCallback<List<CursoBO>>( )
+        cursoService.listarCursos( new AsyncCallback<List<MateriaBO>>( )
         {            
             @Override
-            public void onSuccess( List<CursoBO> result )
+            public void onSuccess( List<MateriaBO> result )
             {
                 Dispatcher.forwardEvent( DTEvent.LISTAR_CURSOS, result );                
             }
@@ -74,18 +74,18 @@ public class PanelCursos extends LayoutContainer
 
     private void eventoSeleccionarCurso( )
     {
-        gridCursos.addListener( Events.CellClick, new Listener<GridEvent<CursoModel>>( )
+        gridCursos.addListener( Events.CellClick, new Listener<GridEvent<MateriaModel>>( )
         {
-            public void handleEvent( GridEvent<CursoModel> e )
+            public void handleEvent( GridEvent<MateriaModel> e )
             {
-                CursoModel cursoModel = e.getGrid( ).getSelectionModel( ).getSelectedItem( );
+                MateriaModel cursoModel = e.getGrid( ).getSelectionModel( ).getSelectedItem( );
                 Dispatcher.forwardEvent( DTEvent.SELECCIONAR_CURSO, cursoModel );
             }
         } );
 
     }
 
-    public void actualizarPanel( ListStore<CursoModel> listaCursos)
+    public void actualizarPanel( ListStore<MateriaModel> listaCursos)
     {
         gridCursos.reconfigure( listaCursos, getColumnModel( ) );
     }

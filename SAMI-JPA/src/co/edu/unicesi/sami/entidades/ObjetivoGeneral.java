@@ -18,10 +18,10 @@ public class ObjetivoGeneral implements Serializable {
 
 	private String contenido;
 
-	//bi-directional many-to-one association to Curso
+	//bi-directional many-to-one association to Materia
     @ManyToOne
-	@JoinColumn(name="id_curso")
-	private Curso curso;
+	@JoinColumn(name="materias_codigo")
+	private Materia materia;
 
     public ObjetivoGeneral() {
     }
@@ -42,12 +42,12 @@ public class ObjetivoGeneral implements Serializable {
 		this.contenido = contenido;
 	}
 
-	public Curso getCurso() {
-		return this.curso;
+	public Materia getMateria() {
+		return this.materia;
 	}
 
-	public void setCurso(Curso curso) {
-		this.curso = curso;
+	public void setMateria(Materia materia) {
+		this.materia = materia;
 	}
 	
 }

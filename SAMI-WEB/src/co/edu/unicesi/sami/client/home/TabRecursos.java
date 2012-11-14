@@ -10,7 +10,7 @@ import co.edu.unicesi.sami.client.home.Mensajero;
 import co.edu.unicesi.sami.client.controller.DTEvent;
 import co.edu.unicesi.sami.client.listados.ListadosService;
 import co.edu.unicesi.sami.client.listados.ListadosServiceAsync;
-import co.edu.unicesi.sami.client.model.CursoModel;
+import co.edu.unicesi.sami.client.model.MateriaModel;
 import co.edu.unicesi.sami.client.model.MaterialModel;
 import co.edu.unicesi.sami.client.model.ObjetivoEspecificoModel;
 import co.edu.unicesi.sami.client.model.SaberModel;

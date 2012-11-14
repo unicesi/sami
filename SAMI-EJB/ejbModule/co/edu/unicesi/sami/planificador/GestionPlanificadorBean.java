@@ -13,7 +13,7 @@ import co.edu.unicesi.sami.bo.RecursoBO;
 import co.edu.unicesi.sami.bo.SaberBO;
 import co.edu.unicesi.sami.bo.SesionBO;
 import co.edu.unicesi.sami.bo.TrabajoAsignadoBO;
-import co.edu.unicesi.sami.entidades.Curso;
+import co.edu.unicesi.sami.entidades.Materia;
 import co.edu.unicesi.sami.entidades.Material;
 import co.edu.unicesi.sami.entidades.ObjetivoEspecifico;
 import co.edu.unicesi.sami.entidades.Recurso;
@@ -39,11 +39,17 @@ public class GestionPlanificadorBean implements GestionPlanificadorRemote, Gesti
 		int resp=-1;
 
 		try {
-			Curso curso=em.find(Curso.class, material.getIdCurso());
+			Materia curso=em.find(Materia.class, material.getIdCurso());
 
-			entidad.setNombre(material.getNombre());
+            entidad.setFuente( material.getFuente( ) );
+            entidad.setAno( material.getAno( ) );
+            entidad.setAutor(material.getAutor( ));
+            entidad.setCiudad( material.getCiudad( ) );
+            entidad.setEditorial(material.getEditorial( ) );
+            entidad.setIdioma( material.getIdioma( ) );
+            entidad.setTitulo( material.getTitulo( ) );
 			entidad.setRecursos(new ArrayList<Recurso>());
-			entidad.setCurso(curso);
+			entidad.setMateria(curso);
 
 			em.persist(entidad);
 
@@ -61,7 +67,13 @@ public class GestionPlanificadorBean implements GestionPlanificadorRemote, Gesti
 		int resp=-1;
 		try {			
 			Material entidad=em.find(Material.class, material.getId());
-			entidad.setNombre(material.getNombre());
+			entidad.setFuente( material.getFuente( ) );
+            entidad.setAno( material.getAno( ) );
+            entidad.setAutor(material.getAutor( ));
+            entidad.setCiudad( material.getCiudad( ) );
+            entidad.setEditorial(material.getEditorial( ) );
+            entidad.setIdioma( material.getIdioma( ) );
+            entidad.setTitulo( material.getTitulo( ) );
 
 			em.merge(entidad);
 			resp=1;
@@ -79,11 +91,17 @@ public class GestionPlanificadorBean implements GestionPlanificadorRemote, Gesti
         em.refresh( material );
 		MaterialBO bo=new MaterialBO();
 
-		bo.setCodigoCurso(material.getCurso().getCodigo());
+		bo.setCodigoCurso(material.getMateria().getCodigo());
 		bo.setId(material.getId());
-		bo.setIdCurso(material.getCurso().getId());
-		bo.setNombre(material.getNombre());
-		bo.setNombreCurso(material.getCurso().getNombre());
+		bo.setIdCurso(material.getMateria().getCodigo());
+		bo.setFuente( material.getFuente( ) );
+        bo.setAno( material.getAno( ) );
+        bo.setAutor(material.getAutor( ));
+        bo.setCiudad( material.getCiudad( ) );
+        bo.setEditorial(material.getEditorial( ) );
+        bo.setIdioma( material.getIdioma( ) );
+        bo.setTitulo( material.getTitulo( ) );
+		bo.setNombreCurso(material.getMateria().getNombre());
 
 		List<Integer> recursosID=new ArrayList<Integer>();
 
@@ -217,7 +235,15 @@ public class GestionPlanificadorBean implements GestionPlanificadorRemote, Gesti
 		bo.setId(recurso.getId());
 		bo.setIdMaterial(recurso.getMateriale().getId());
 		bo.setIdSaber(recurso.getSabere().getId());
-		bo.setNombreMaterial(recurso.getMateriale().getNombre());
+		MaterialBO mat = new MaterialBO();
+		mat.setFuente( recurso.getMateriale().getFuente( ) );
+        mat.setAno( recurso.getMateriale().getAno( ) );
+        mat.setAutor(recurso.getMateriale().getAutor( ));
+        mat.setCiudad( recurso.getMateriale().getCiudad( ) );
+        mat.setEditorial(recurso.getMateriale().getEditorial( ) );
+        mat.setIdioma( recurso.getMateriale().getIdioma( ) );
+        mat.setTitulo( recurso.getMateriale().getTitulo( ) );
+		bo.setMaterial(mat);
 		bo.setNombreSaber(recurso.getSabere().getNombre());
 		bo.setTipoSaber(recurso.getSabere().getTipo());
 

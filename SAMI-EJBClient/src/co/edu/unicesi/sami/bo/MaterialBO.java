@@ -6,10 +6,16 @@ import java.util.List;
 public class MaterialBO implements Serializable
 {
     private int id;
-    private String nombre;
+    private String fuente;
+	private String idioma;
+    private String autor;
+    private String titulo;
+    private String ano;
+    private String ciudad;
+    private String editorial;
     private int idCurso;
-    private String codigoCurso;
-    private String nombreCurso;
+    private int codigoCurso;
+    private String nombreCurso;    
     private List<Integer> recursos;    
 
 	private static final long serialVersionUID = 1L;
@@ -24,17 +30,68 @@ public class MaterialBO implements Serializable
         return id;
     }
 
-    public String getNombre( )
-    {
-        return nombre;
-    }
+    public String getFuente() {
+		return fuente;
+	}
+
+	public void setFuente(String fuente) {
+		this.fuente = fuente;
+	}
+
+	public String getIdioma() {
+		return idioma;
+	}
+
+	public void setIdioma(String idioma) {
+		this.idioma = idioma;
+	}
+
+	public String getAutor() {
+		return autor;
+	}
+
+	public void setAutor(String autor) {
+		this.autor = autor;
+	}
+
+	public String getTitulo() {
+		return titulo;
+	}
+
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
+	}
+
+	public String getAno() {
+		return ano;
+	}
+
+	public void setAno(String ano) {
+		this.ano = ano;
+	}
+
+	public String getCiudad() {
+		return ciudad;
+	}
+
+	public void setCiudad(String ciudad) {
+		this.ciudad = ciudad;
+	}
+
+	public String getEditorial() {
+		return editorial;
+	}
+
+	public void setEditorial(String editorial) {
+		this.editorial = editorial;
+	}
 
     public int getIdCurso( )
     {
         return idCurso;
     }
 
-    public String getCodigoCurso( )
+    public int getCodigoCurso( )
     {
         return codigoCurso;
     }
@@ -54,17 +111,12 @@ public class MaterialBO implements Serializable
         this.id = id;
     }
 
-    public void setNombre( String nombre )
-    {
-        this.nombre = nombre;
-    }
-
     public void setIdCurso( int idCurso )
     {
         this.idCurso = idCurso;
     }
 
-    public void setCodigoCurso( String codigoCurso )
+    public void setCodigoCurso( int codigoCurso )
     {
         this.codigoCurso = codigoCurso;
     }

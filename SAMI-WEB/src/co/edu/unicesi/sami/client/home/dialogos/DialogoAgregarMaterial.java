@@ -126,8 +126,7 @@ public class DialogoAgregarMaterial extends Dialog {
 		String ano = txtAno.getValue();
 		String ciudad = txtCiudad.getValue();
 		String editorial = txtEditorial.getValue();
-		tabMateriales.agregarMaterial(fuente + ";" + idioma + ";" + autor + ";"
-				+ titulo + ";" + ano + ";" + ciudad + ";" + editorial);
+		tabMateriales.agregarMaterial(fuente, idioma ,autor, titulo, ano ,ciudad ,editorial);
 	}
 
 	private void limpiarDatos() {

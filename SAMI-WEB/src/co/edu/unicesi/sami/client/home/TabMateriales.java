@@ -11,7 +11,7 @@ import co.edu.unicesi.sami.client.home.dialogos.DialogoAgregarMaterial;
 import co.edu.unicesi.sami.client.home.dialogos.DialogoEditarMaterial;
 import co.edu.unicesi.sami.client.listados.ListadosService;
 import co.edu.unicesi.sami.client.listados.ListadosServiceAsync;
-import co.edu.unicesi.sami.client.model.CursoModel;
+import co.edu.unicesi.sami.client.model.MateriaModel;
 import co.edu.unicesi.sami.client.model.MaterialModel;
 import co.edu.unicesi.sami.client.internationalization.MultiLingualConstants;
 import co.edu.unicesi.sami.client.planificador.PlanificadorService;
@@ -136,14 +136,21 @@ public class TabMateriales extends TabItem
         } );
     }
 
-    public void agregarMaterial( String nombre)
+    public void agregarMaterial( String fuente, String idioma, String autor, String titulo, String ano,
+			String ciudad, String editorial)
     {
-        MaterialBO material = new MaterialBO( );
-        material.setNombre( nombre );   
+        MaterialBO m = new MaterialBO( );
+        m.setFuente( fuente );
+        m.setAno( ano);
+        m.setAutor(autor);
+        m.setCiudad(ciudad );
+        m.setEditorial(editorial);
+        m.setIdioma( idioma );
+        m.setTitulo( titulo );
         int idCurso = Registry.get( "idCurso" );
-        material.setIdCurso( idCurso );
+        m.setIdCurso( idCurso );
 
-        planificadorService.agregarMaterial( material, new AsyncCallback<Integer>( )
+        planificadorService.agregarMaterial( m, new AsyncCallback<Integer>( )
         {
             @Override
             public void onSuccess( Integer result )
@@ -160,13 +167,20 @@ public class TabMateriales extends TabItem
         } );
     }
 
-    public void editarMaterial( String nombre )
+    public void editarMaterial( String fuente, String idioma, String autor, String titulo, String ano,
+			String ciudad, String editorial)
     {
-        MaterialBO material = new MaterialBO( );
-        material.setNombre( nombre );
-        material.setId( idMaterial );
+        MaterialBO m = new MaterialBO( );
+        m.setFuente( fuente );
+        m.setAno( ano);
+        m.setAutor(autor);
+        m.setCiudad(ciudad );
+        m.setEditorial(editorial);
+        m.setIdioma( idioma );
+        m.setTitulo( titulo );
+        m.setId( idMaterial );
 
-        planificadorService.editarMaterial( material, new AsyncCallback<Integer>( )
+        planificadorService.editarMaterial( m, new AsyncCallback<Integer>( )
         {
             @Override
             public void onSuccess( Integer result )

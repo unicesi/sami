@@ -9,8 +9,7 @@ public class RecursoBO implements Serializable {
 	private String nombreSaber;
 	private String contenidoSaber;
 	private String tipoSaber;
-	private int idMaterial;
-	private String nombreMaterial;
+	private int idMaterial;	
 	private List<Integer> recursosAsignados;
 	private MaterialBO material;
 
@@ -44,10 +43,6 @@ public class RecursoBO implements Serializable {
 		return idMaterial;
 	}
 
-	public String getNombreMaterial() {
-		return nombreMaterial;
-	}
-
 	public List<Integer> getRecursosAsignados() {
 		return recursosAsignados;
 	}
@@ -78,10 +73,6 @@ public class RecursoBO implements Serializable {
 
 	public void setIdMaterial(int idMaterial) {
 		this.idMaterial = idMaterial;
-	}
-
-	public void setNombreMaterial(String nombreMaterial) {
-		this.nombreMaterial = nombreMaterial;
 	}
 
 	public void setRecursosAsignados(List<Integer> recursosAsignados) {

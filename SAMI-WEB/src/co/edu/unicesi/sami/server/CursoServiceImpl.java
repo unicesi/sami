@@ -5,7 +5,7 @@ import java.util.List;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
-import co.edu.unicesi.sami.bo.CursoBO;
+import co.edu.unicesi.sami.bo.MateriaBO;
 import co.edu.unicesi.sami.client.curso.CursoService;
 import co.edu.unicesi.sami.curso.GestionCursoRemote;
 
@@ -31,25 +31,25 @@ public class CursoServiceImpl extends RemoteServiceServlet implements CursoServi
     }
     
     @Override
-    public int agregarCurso( CursoBO curso )
+    public int agregarCurso( MateriaBO curso )
     {
         return cursoService.agregarCurso( curso );
     }
 
     @Override
-    public int editarCurso( CursoBO curso )
+    public int editarCurso( MateriaBO curso )
     {
         return cursoService.editarCurso( curso );
     }
 
     @Override
-    public CursoBO buscarCurso( int idCurso )
+    public MateriaBO buscarCurso( int idCurso )
     {
         return cursoService.buscarCurso( idCurso );
     }
 
     @Override
-    public List<CursoBO> listarCursos( )
+    public List<MateriaBO> listarCursos( )
     {
         return cursoService.listarCursos( );
     }

@@ -25,10 +25,14 @@ public class ObjetivoTerminal implements Serializable {
 	@OneToMany(mappedBy="objetivosTerminale")
 	private List<MetaTerminal> metasTerminales;
 
-	//bi-directional many-to-one association to Curso
+	//bi-directional many-to-one association to Materia
     @ManyToOne
-	@JoinColumn(name="id_curso")
-	private Curso curso;
+	@JoinColumn(name="FK_CodigoMateria")
+	private Materia materia;
+
+	//bi-directional many-to-one association to ObjetivoTerminalCompetenciaEspecifica
+	@OneToMany(mappedBy="objetivosTerminale")
+	private List<ObjetivoTerminalCompetenciaEspecifica> objetivosterminalesCompetenciasespecificas;
 
     public ObjetivoTerminal() {
     }
@@ -65,12 +69,20 @@ public class ObjetivoTerminal implements Serializable {
 		this.metasTerminales = metasTerminales;
 	}
 	
-	public Curso getCurso() {
-		return this.curso;
+	public Materia getMateria() {
+		return this.materia;
 	}
 
-	public void setCurso(Curso curso) {
-		this.curso = curso;
+	public void setMateria(Materia materia) {
+		this.materia = materia;
+	}
+	
+	public List<ObjetivoTerminalCompetenciaEspecifica> getObjetivosterminalesCompetenciasespecificas() {
+		return this.objetivosterminalesCompetenciasespecificas;
+	}
+
+	public void setObjetivosterminalesCompetenciasespecificas(List<ObjetivoTerminalCompetenciaEspecifica> objetivosterminalesCompetenciasespecificas) {
+		this.objetivosterminalesCompetenciasespecificas = objetivosterminalesCompetenciasespecificas;
 	}
 	
 }

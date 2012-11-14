@@ -2,7 +2,7 @@ package co.edu.unicesi.sami.client.controller;
 
 import java.util.List;
 
-import co.edu.unicesi.sami.bo.CursoBO;
+import co.edu.unicesi.sami.bo.MateriaBO;
 import co.edu.unicesi.sami.bo.MaterialBO;
 import co.edu.unicesi.sami.bo.MetaTerminalBO;
 import co.edu.unicesi.sami.bo.ObjetivoEspecificoBO;
@@ -21,7 +21,7 @@ import co.edu.unicesi.sami.client.home.TabPlanificador;
 import co.edu.unicesi.sami.client.home.TabRecursos;
 import co.edu.unicesi.sami.client.home.TabSaberes;
 import co.edu.unicesi.sami.client.home.TabUnidades;
-import co.edu.unicesi.sami.client.model.CursoModel;
+import co.edu.unicesi.sami.client.model.MateriaModel;
 import co.edu.unicesi.sami.client.model.MaterialModel;
 import co.edu.unicesi.sami.client.model.MetaTerminalModel;
 import co.edu.unicesi.sami.client.model.ObjetivoEspecificoModel;
@@ -66,11 +66,11 @@ public class DTViewController extends Controller {
 	@Override
 	public void handleEvent(AppEvent event) {
 		if (event.getType().equals(DTEvent.LISTAR_CURSOS)) {
-			List<CursoBO> cursos = (List<CursoBO>) event.getData();
-			ListStore<CursoModel> cursosModel = new ListStore<CursoModel>();
+			List<MateriaBO> cursos = (List<MateriaBO>) event.getData();
+			ListStore<MateriaModel> cursosModel = new ListStore<MateriaModel>();
 
-			for (CursoBO bo : cursos) {
-				cursosModel.add(CursoModel.toModelFromBO(bo));
+			for (MateriaBO bo : cursos) {
+				cursosModel.add(MateriaModel.toModelFromBO(bo));
 			}
 
 			PanelCursos panelCursos = Registry.get("panelCursos");
@@ -177,7 +177,7 @@ public class DTViewController extends Controller {
 			TabSaberes tabSaberes = Registry.get("tabSaberes");
 			tabSaberes.actualizarTablaSaberes(sModel);
 		} else if (event.getType().equals(DTEvent.SELECCIONAR_CURSO)) {
-			CursoModel cursoModel = (CursoModel) event.getData();
+			MateriaModel cursoModel = (MateriaModel) event.getData();
 			Registry.register("idCurso", cursoModel.getId());
 
 			TabPanel tabs = Registry.get("tabs");

@@ -3,10 +3,10 @@ package co.edu.unicesi.sami.bo;
 import java.io.Serializable;
 import java.util.List;
 
-public class CursoBO implements Serializable
+public class MateriaBO implements Serializable
 {
     private int id;
-    private String codigo;
+    private int codigo;
     private String nombre;
     private int idObjGeneral;
     private String contenidoObjGeneral;
@@ -16,7 +16,7 @@ public class CursoBO implements Serializable
 
 	private static final long serialVersionUID = 1L;
     
-    public CursoBO()
+    public MateriaBO()
     {
         
     }
@@ -26,7 +26,7 @@ public class CursoBO implements Serializable
         return id;
     }
 
-    public String getCodigo( )
+    public int getCodigo( )
     {
         return codigo;
     }
@@ -66,7 +66,7 @@ public class CursoBO implements Serializable
         this.id = id;
     }
 
-    public void setCodigo( String codigo )
+    public void setCodigo( int codigo )
     {
         this.codigo = codigo;
     }

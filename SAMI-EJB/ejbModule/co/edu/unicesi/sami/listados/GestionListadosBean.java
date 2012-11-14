@@ -18,7 +18,7 @@ import co.edu.unicesi.sami.bo.SaberBO;
 import co.edu.unicesi.sami.bo.SesionBO;
 import co.edu.unicesi.sami.bo.TrabajoAsignadoBO;
 import co.edu.unicesi.sami.bo.UnidadBO;
-import co.edu.unicesi.sami.entidades.Curso;
+import co.edu.unicesi.sami.entidades.Materia;
 import co.edu.unicesi.sami.entidades.Material;
 import co.edu.unicesi.sami.entidades.MetaTerminal;
 import co.edu.unicesi.sami.entidades.ObjetivoEspecifico;
@@ -42,7 +42,7 @@ public class GestionListadosBean implements GestionListadosRemote, GestionListad
     @Override
     public List<MaterialBO> listarMaterialesPorCurso( int idCurso )
     {
-        Curso curso = em.find( Curso.class, idCurso );
+        Materia curso = em.find( Materia.class, idCurso );
         em.refresh( curso );
         List<MaterialBO> materiales = new ArrayList<MaterialBO>( );
         
@@ -51,7 +51,13 @@ public class GestionListadosBean implements GestionListadosRemote, GestionListad
             MaterialBO bo = new MaterialBO( );
             
             bo.setId( m.getId( ) );
-            bo.setNombre( m.getNombre( ) );
+            bo.setFuente( m.getFuente( ) );
+            bo.setAno( m.getAno( ) );
+            bo.setAutor(m.getAutor( ));
+            bo.setCiudad( m.getCiudad( ) );
+            bo.setEditorial(m.getEditorial( ) );
+            bo.setIdioma( m.getIdioma( ) );
+            bo.setTitulo( m.getTitulo( ) );
            
             materiales.add( bo );
         }
@@ -62,7 +68,7 @@ public class GestionListadosBean implements GestionListadosRemote, GestionListad
     @Override
     public List<SaberBO> listarSaberesPorCurso(int idCurso)
     {
-//        String query = "SELECT DISTINCT(s) FROM Curso c, Unidad u, MetaTerminal mt, ObjetivoEspecifico oe, Saber s WHERE s.objetivosEspecifico = oe AND oe.metasTerminale = mt AND mt.unidade = u AND u.curso.id = :idCurso";
+//        String query = "SELECT DISTINCT(s) FROM Materia c, Unidad u, MetaTerminal mt, ObjetivoEspecifico oe, Saber s WHERE s.objetivosEspecifico = oe AND oe.metasTerminale = mt AND mt.unidade = u AND u.curso.id = :idCurso";
 //        Query q = em.createQuery( query );
 //        q.setParameter( "idCurso", idCurso );
 //        List<Saber> saberes = q.getResultList( );
@@ -81,7 +87,7 @@ public class GestionListadosBean implements GestionListadosRemote, GestionListad
 //        }
 //        
 //        return saberesBO;
-        Curso curso = em.find( Curso.class, idCurso );
+        Materia curso = em.find( Materia.class, idCurso );
         em.refresh( curso );
         List<SaberBO> saberes = new ArrayList<SaberBO>( );
         
@@ -122,7 +128,7 @@ public class GestionListadosBean implements GestionListadosRemote, GestionListad
     @Override
     public List<MetaTerminalBO> listarMetasTerminalesPorCurso( int idCurso )
     {
-        String query = "SELECT DISTINCT (mt) FROM Curso c, Unidad u, MetaTerminal mt WHERE mt.unidade = u and u.curso.id = :idCurso";
+        String query = "SELECT DISTINCT (mt) FROM Materia c, Unidad u, MetaTerminal mt WHERE mt.unidade = u and u.curso.id = :idCurso";
         Query q = em.createQuery( query );
         q.setParameter( "idCurso", idCurso );
         List<MetaTerminal> metasTerminales = q.getResultList( );
@@ -151,7 +157,7 @@ public class GestionListadosBean implements GestionListadosRemote, GestionListad
     @Override
     public List<ObjetivoEspecificoBO> listarObjEspecificosPorCurso( int idCurso )
     {
-        String query = "SELECT DISTINCT (oe) FROM Curso c, Unidad u, MetaTerminal mt, ObjetivoEspecifico oe WHERE oe.metasTerminale = mt AND mt.unidade = u AND u.curso.id = :idCurso";
+        String query = "SELECT DISTINCT (oe) FROM Materia c, Unidad u, MetaTerminal mt, ObjetivoEspecifico oe WHERE oe.metasTerminale = mt AND mt.unidade = u AND u.curso.id = :idCurso";
         Query q = em.createQuery( query );
         q.setParameter( "idCurso", idCurso );
         List<ObjetivoEspecifico> objEspecificos = q.getResultList( );
@@ -218,7 +224,7 @@ public class GestionListadosBean implements GestionListadosRemote, GestionListad
     @Override
     public List<ObjetivoTerminalBO> listarObjTerminalesPorCurso( int idCurso )
     {
-        Curso curso = em.find( Curso.class, idCurso );
+        Materia curso = em.find( Materia.class, idCurso );
         em.refresh( curso );
         List<ObjetivoTerminalBO> objTerminales = new ArrayList<ObjetivoTerminalBO>( );
         
@@ -249,14 +255,19 @@ public class GestionListadosBean implements GestionListadosRemote, GestionListad
             
             bo.setId( r.getId( ) );
             
-            bo.setIdSaber( r.getSabere( ).getId( ) );
+            bo.setIdSaber( r.getSabere( ).getId());
             bo.setNombreSaber( r.getSabere( ).getNombre( ) );
             bo.setContenidoSaber( r.getSabere( ).getContenido( ) );            
             bo.setIdMaterial( r.getMateriale( ).getId( ) );
-            bo.setNombreMaterial( r.getMateriale( ).getNombre( ) );
             MaterialBO m = new MaterialBO();
             m.setId(r.getMateriale().getId());
-            m.setNombre(r.getMateriale().getNombre());
+            m.setFuente( m.getFuente( ) );
+            m.setAno( m.getAno( ) );
+            m.setAutor(m.getAutor( ));
+            m.setCiudad( m.getCiudad( ) );
+            m.setEditorial(m.getEditorial( ) );
+            m.setIdioma( m.getIdioma( ) );
+            m.setTitulo( m.getTitulo( ) );
             bo.setMaterial(m);
             recursos.add( bo  );
         }
@@ -346,7 +357,7 @@ public class GestionListadosBean implements GestionListadosRemote, GestionListad
             bo.setIdRecurso( r.getRecurso( ).getId( ) );
             
             bo.setIdMaterial( r.getRecurso( ).getMateriale( ).getId( ) );
-            bo.setNombreMaterial( r.getRecurso( ).getMateriale( ).getNombre( ) );
+            bo.setNombreMaterial( r.getRecurso( ).getMateriale( ).getTitulo( ) );
             
             bo.setIdSaber( r.getRecurso( ).getSabere( ).getId( ) );
             bo.setNombreSaber( r.getRecurso( ).getSabere( ).getNombre( ) );
@@ -361,7 +372,7 @@ public class GestionListadosBean implements GestionListadosRemote, GestionListad
     @Override
     public List<UnidadBO> listarUnidadesPorCurso( int idCurso )
     {
-        Curso curso = em.find( Curso.class, idCurso );
+        Materia curso = em.find( Materia.class, idCurso );
         em.refresh( curso );
         List<UnidadBO> unidades = new ArrayList<UnidadBO>( );
         
@@ -411,7 +422,7 @@ public class GestionListadosBean implements GestionListadosRemote, GestionListad
 
 	@Override
 	public List<RecursoBO> listarRecursosPorCurso(int idCurso) {
-		Curso curso = em.find( Curso.class, idCurso );
+		Materia curso = em.find( Materia.class, idCurso );
         em.refresh( curso );
         List<RecursoBO> recursos = new ArrayList<RecursoBO>( );
         
@@ -419,7 +430,13 @@ public class GestionListadosBean implements GestionListadosRemote, GestionListad
         {
         	MaterialBO m = new MaterialBO();
         	m.setId(material.getId());
-        	m.setNombre(material.getNombre());
+            m.setFuente( m.getFuente( ) );
+            m.setAno( m.getAno( ) );
+            m.setAutor(m.getAutor( ));
+            m.setCiudad( m.getCiudad( ) );
+            m.setEditorial(m.getEditorial( ) );
+            m.setIdioma( m.getIdioma( ) );
+            m.setTitulo( m.getTitulo( ) );
         	for(Recurso recurso :material.getRecursos()){
         	
             RecursoBO bo = new RecursoBO( );

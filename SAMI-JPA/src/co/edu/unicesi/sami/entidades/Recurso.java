@@ -19,12 +19,12 @@ public class Recurso implements Serializable {
 
 	//bi-directional many-to-one association to Material
     @ManyToOne
-	@JoinColumn(name="id_material")
+	@JoinColumn(name="FK_IdMaterial")
 	private Material materiale;
 
 	//bi-directional many-to-one association to Saber
     @ManyToOne
-	@JoinColumn(name="id_saber")
+	@JoinColumn(name="saberes_id")
 	private Saber sabere;
 
 	//bi-directional many-to-one association to RecursoAsignado

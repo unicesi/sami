@@ -17,12 +17,24 @@ public class Material implements Serializable {
 	@Id
 	private int id;
 
-	private String nombre;
+	private String ano;
 
-	//bi-directional many-to-one association to Curso
+	private String autor;
+
+	private String ciudad;
+
+	private String editorial;
+
+	private String fuente;
+
+	private String idioma;
+
+	private String titulo;
+
+	//bi-directional many-to-one association to Materia
     @ManyToOne
-	@JoinColumn(name="id_cursos")
-	private Curso curso;
+	@JoinColumn(name="materias_codigo")
+	private Materia materia;
 
 	//bi-directional many-to-one association to Recurso
 	@OneToMany(mappedBy="materiale")
@@ -39,20 +51,68 @@ public class Material implements Serializable {
 		this.id = id;
 	}
 
-	public String getNombre() {
-		return this.nombre;
+	public String getAno() {
+		return this.ano;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setAno(String ano) {
+		this.ano = ano;
 	}
 
-	public Curso getCurso() {
-		return this.curso;
+	public String getAutor() {
+		return this.autor;
 	}
 
-	public void setCurso(Curso curso) {
-		this.curso = curso;
+	public void setAutor(String autor) {
+		this.autor = autor;
+	}
+
+	public String getCiudad() {
+		return this.ciudad;
+	}
+
+	public void setCiudad(String ciudad) {
+		this.ciudad = ciudad;
+	}
+
+	public String getEditorial() {
+		return this.editorial;
+	}
+
+	public void setEditorial(String editorial) {
+		this.editorial = editorial;
+	}
+
+	public String getFuente() {
+		return this.fuente;
+	}
+
+	public void setFuente(String fuente) {
+		this.fuente = fuente;
+	}
+
+	public String getIdioma() {
+		return this.idioma;
+	}
+
+	public void setIdioma(String idioma) {
+		this.idioma = idioma;
+	}
+
+	public String getTitulo() {
+		return this.titulo;
+	}
+
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
+	}
+
+	public Materia getMateria() {
+		return this.materia;
+	}
+
+	public void setMateria(Materia materia) {
+		this.materia = materia;
 	}
 	
 	public List<Recurso> getRecursos() {

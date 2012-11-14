@@ -18,7 +18,7 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
 
 public class DialogoEditarMaterial extends Dialog {
-	
+
 	private final static MultiLingualConstants MultiLingualConstants = GWT
 			.create(MultiLingualConstants.class);
 
@@ -96,7 +96,6 @@ public class DialogoEditarMaterial extends Dialog {
 		txtEditorial = new TextField<String>();
 
 		add(txtEditorial, new AbsoluteData(92, 201));
-		
 
 		eventoAgregarMaterial();
 		eventoCerrarVentana();
@@ -130,8 +129,8 @@ public class DialogoEditarMaterial extends Dialog {
 		String ano = txtAno.getValue();
 		String ciudad = txtCiudad.getValue();
 		String editorial = txtEditorial.getValue();
-		tabMateriales.agregarMaterial(fuente + ";" + idioma + ";" + autor + ";"
-				+ titulo + ";" + ano + ";" + ciudad + ";" + editorial);
+		tabMateriales.agregarMaterial(fuente, idioma, autor, titulo, ano,
+				ciudad, editorial);
 	}
 
 	private void limpiarDatos() {

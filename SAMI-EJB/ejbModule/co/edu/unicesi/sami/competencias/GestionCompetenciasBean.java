@@ -14,7 +14,7 @@ import co.edu.unicesi.sami.bo.ObjetivoEspecificoBO;
 import co.edu.unicesi.sami.bo.ObjetivoGeneralBO;
 import co.edu.unicesi.sami.bo.ObjetivoTerminalBO;
 import co.edu.unicesi.sami.bo.UnidadBO;
-import co.edu.unicesi.sami.entidades.Curso;
+import co.edu.unicesi.sami.entidades.Materia;
 import co.edu.unicesi.sami.entidades.MetaTerminal;
 import co.edu.unicesi.sami.entidades.ObjetivoEspecifico;
 import co.edu.unicesi.sami.entidades.ObjetivoGeneral;
@@ -40,12 +40,12 @@ public class GestionCompetenciasBean implements GestionCompetenciasRemote, Gesti
 
         try
         {
-            Curso curso = em.find( Curso.class, unidad.getIdCurso( ) );
+            Materia curso = em.find( Materia.class, unidad.getIdCurso( ) );
 
             entidad.setNumero( unidad.getNumero( ) );
             entidad.setNombre( unidad.getNombre( ) );
             entidad.setContenido( unidad.getContenido( ) );
-            entidad.setCurso( curso );
+            entidad.setMateria(curso);
             entidad.setMetasTerminales( new ArrayList<MetaTerminal>( ) );
             entidad.setSesiones( new ArrayList<Sesion>( ) );
 
@@ -97,9 +97,9 @@ public class GestionCompetenciasBean implements GestionCompetenciasRemote, Gesti
         bo.setNombre( unidad.getNombre( ) );
         bo.setContenido( unidad.getContenido( ) );
 
-        bo.setIdCurso( unidad.getCurso( ).getId( ) );
-        bo.setCodigoCurso( unidad.getCurso( ).getCodigo( ) );
-        bo.setNombreCurso( unidad.getCurso( ).getNombre( ) );
+        bo.setIdCurso( unidad.getMateria( ).getCodigo( ) );
+        bo.setCodigoCurso( ((Integer)unidad.getMateria( ).getCodigo()).toString() );
+        bo.setNombreCurso( unidad.getMateria( ).getNombre( ) );
 
         List<Integer> metasTerminales = new ArrayList<Integer>( );
         for( MetaTerminal mt : unidad.getMetasTerminales( ) )
@@ -126,10 +126,10 @@ public class GestionCompetenciasBean implements GestionCompetenciasRemote, Gesti
 
         try
         {
-            Curso curso = em.find( Curso.class, objGeneral.getIdCurso( ) );
+            Materia curso = em.find( Materia.class, objGeneral.getIdCurso( ) );
 
             entidad.setContenido( objGeneral.getContenido( ) );
-            entidad.setCurso( curso );
+            entidad.setMateria( curso );
 
             em.persist( entidad );
             em.flush( );
@@ -170,7 +170,7 @@ public class GestionCompetenciasBean implements GestionCompetenciasRemote, Gesti
     {
         try
         {
-            Curso curso = em.find( Curso.class, idCurso );
+            Materia curso = em.find( Materia.class, idCurso );
             em.refresh( curso );
             ObjetivoGeneralBO bo = new ObjetivoGeneralBO( );
 
@@ -178,7 +178,7 @@ public class GestionCompetenciasBean implements GestionCompetenciasRemote, Gesti
             bo.setContenido( curso.getObjetivosGenerales( ).get( 0 ).getContenido( ) );
 
             bo.setIdCurso( idCurso );
-            bo.setCodigoCurso( curso.getCodigo( ) );
+            bo.setCodigoCurso( ((Integer)curso.getCodigo( )).toString() );
             bo.setNombreCurso( curso.getNombre( ) );
 
             return bo;
@@ -198,11 +198,11 @@ public class GestionCompetenciasBean implements GestionCompetenciasRemote, Gesti
 
         try
         {
-            Curso curso = em.find( Curso.class, objTerminal.getIdCurso( ) );
+            Materia curso = em.find( Materia.class, objTerminal.getIdCurso( ) );
 
             entidad.setNombre( objTerminal.getNombre( ) );
             entidad.setContenido( objTerminal.getContenido( ) );
-            entidad.setCurso( curso );
+            entidad.setMateria( curso );
             entidad.setMetasTerminales( new ArrayList<MetaTerminal>( ) );
 
             em.persist( entidad );
@@ -252,9 +252,9 @@ public class GestionCompetenciasBean implements GestionCompetenciasRemote, Gesti
         bo.setNombre( objTerminal.getNombre( ) );
         bo.setContenido( objTerminal.getContenido( ) );
 
-        bo.setIdCurso( objTerminal.getCurso( ).getId( ) );
-        bo.setCodigoCurso( objTerminal.getCurso( ).getCodigo( ) );
-        bo.setNombreCurso( objTerminal.getCurso( ).getNombre( ) );
+        bo.setIdCurso( objTerminal.getMateria( ).getCodigo( ) );
+        bo.setCodigoCurso( ((Integer)objTerminal.getMateria( ).getCodigo( )).toString() );
+        bo.setNombreCurso( objTerminal.getMateria( ).getNombre( ) );
 
         List<Integer> metasTerminales = new ArrayList<Integer>( );
         for( MetaTerminal mt : objTerminal.getMetasTerminales( ) )

@@ -29,7 +29,7 @@ public class Saber implements Serializable {
 
 	//bi-directional many-to-one association to ObjetivoEspecifico
     @ManyToOne
-	@JoinColumn(name="id_obj_especifico")
+	@JoinColumn(name="FK_IdObjetivoEspecifico")
 	private ObjetivoEspecifico objetivosEspecifico;
 
     public Saber() {

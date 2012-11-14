@@ -4,17 +4,38 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
 	<persistence-unit name="SAMI-JPA">
 		<jta-data-source>bd_sam</jta-data-source>
-		<class>co.edu.unicesi.sami.entidades.Curso</class>
+		<class>co.edu.unicesi.sami.entidades.Assessment</class>
+		<class>co.edu.unicesi.sami.entidades.AssessmentPK</class>
+		<class>co.edu.unicesi.sami.entidades.Bloque</class>
+		<class>co.edu.unicesi.sami.entidades.BloqueCompetenciaEspecifica</class>
+		<class>co.edu.unicesi.sami.entidades.BloqueCompetenciaEspecificaPK</class>
+		<class>co.edu.unicesi.sami.entidades.Calificacion</class>
+		<class>co.edu.unicesi.sami.entidades.CalificacionPK</class>
+		<class>co.edu.unicesi.sami.entidades.CompetenciaEspecifica</class>
+		<class>co.edu.unicesi.sami.entidades.CompetenciaEspecificaPrograma</class>
+		<class>co.edu.unicesi.sami.entidades.CompetenciaEspecificaProgramaPK</class>
+		<class>co.edu.unicesi.sami.entidades.CompetenciaGeneral</class>
+		<class>co.edu.unicesi.sami.entidades.CompetenciaTerminal</class>
 		<class>co.edu.unicesi.sami.entidades.Material</class>
+		<class>co.edu.unicesi.sami.entidades.Materia</class>
+		<class>co.edu.unicesi.sami.entidades.MateriaCompetenciaEspecifica</class>
+		<class>co.edu.unicesi.sami.entidades.MateriaCompetenciaEspecificaPK</class>
 		<class>co.edu.unicesi.sami.entidades.MetaTerminal</class>
 		<class>co.edu.unicesi.sami.entidades.ObjetivoEspecifico</class>
 		<class>co.edu.unicesi.sami.entidades.ObjetivoGeneral</class>
 		<class>co.edu.unicesi.sami.entidades.ObjetivoTerminal</class>
+		<class>co.edu.unicesi.sami.entidades.ObjetivoTerminalCompetenciaEspecifica</class>
+		<class>co.edu.unicesi.sami.entidades.ObjetivoTerminalCompetenciaEspecificaPK</class>
+		<class>co.edu.unicesi.sami.entidades.Programa</class>
 		<class>co.edu.unicesi.sami.entidades.Recurso</class>
 		<class>co.edu.unicesi.sami.entidades.RecursoAsignado</class>
+		<class>co.edu.unicesi.sami.entidades.Rol</class>
 		<class>co.edu.unicesi.sami.entidades.Saber</class>
 		<class>co.edu.unicesi.sami.entidades.Sesion</class>
 		<class>co.edu.unicesi.sami.entidades.TrabajoAsignado</class>
-		<class>co.edu.unicesi.sami.entidades.Unidad</class>		
+		<class>co.edu.unicesi.sami.entidades.Unidad</class>
+		<class>co.edu.unicesi.sami.entidades.Usuario</class>
+		<class>co.edu.unicesi.sami.entidades.UsuarioRol</class>
+		<class>co.edu.unicesi.sami.entidades.UsuarioRolPK</class>		
 	</persistence-unit>
 </persistence>

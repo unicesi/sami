@@ -13,7 +13,7 @@ import co.edu.unicesi.sami.client.home.dialogos.DialogoAgregarObjTerminal;
 import co.edu.unicesi.sami.client.home.dialogos.DialogoEditarObjTerminal;
 import co.edu.unicesi.sami.client.listados.ListadosService;
 import co.edu.unicesi.sami.client.listados.ListadosServiceAsync;
-import co.edu.unicesi.sami.client.model.CursoModel;
+import co.edu.unicesi.sami.client.model.MateriaModel;
 import co.edu.unicesi.sami.client.model.MetaTerminalModel;
 import co.edu.unicesi.sami.client.model.ObjetivoTerminalModel;
 import co.edu.unicesi.sami.client.internationalization.MultiLingualConstants;

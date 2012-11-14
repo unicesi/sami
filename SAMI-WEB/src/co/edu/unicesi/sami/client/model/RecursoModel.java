@@ -86,15 +86,13 @@ public class RecursoModel extends BaseModel implements Serializable {
 		// TODO Auto-generated method stub
 		RecursoModel uModel = new RecursoModel();
 		uModel.setId(bo.getId());
-		String cadena = bo.getMaterial().getNombre();
-		String[] parti = cadena.split(";");
-		uModel.setFuente(parti[0]);
-		uModel.setIdioma(parti[1]);
-		uModel.setAutor(parti[2]);
-		uModel.setTitulo(parti[3]);
-		uModel.setAno(parti[4]);
-		uModel.setCiudad(parti[5]);
-		uModel.setEditorial(parti[6]);
+		uModel.setFuente(bo.getMaterial().getFuente());
+		uModel.setIdioma(bo.getMaterial().getIdioma());
+		uModel.setAutor(bo.getMaterial().getAutor());
+		uModel.setTitulo(bo.getMaterial().getTitulo());
+		uModel.setAno(bo.getMaterial().getAno());
+		uModel.setCiudad(bo.getMaterial().getCiudad());
+		uModel.setEditorial(bo.getMaterial().getEditorial());
 		return uModel;
 	}
 

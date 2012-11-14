@@ -3,19 +3,19 @@ package co.edu.unicesi.sami.client.model;
 import java.io.Serializable;
 import java.util.List;
 
-import co.edu.unicesi.sami.bo.CursoBO;
+import co.edu.unicesi.sami.bo.MateriaBO;
 
 import com.extjs.gxt.ui.client.data.BaseModel;
 
-public class CursoModel extends BaseModel implements Serializable
+public class MateriaModel extends BaseModel implements Serializable
 {
     
-    public CursoModel()
+    public MateriaModel()
     {
         
     }
     
-    public CursoModel(int id, String nombre, String codigo)
+    public MateriaModel(int id, String nombre, int codigo)
     {
         set( "id", id );
         set("nombre", nombre);
@@ -27,9 +27,9 @@ public class CursoModel extends BaseModel implements Serializable
         return (Integer) get("id");
     }
 
-    public String getCodigo( )
+    public int getCodigo( )
     {
-        return (String) get("codigo");
+        return (Integer) get("codigo");
     }
 
     public String getNombre( )
@@ -42,7 +42,7 @@ public class CursoModel extends BaseModel implements Serializable
         set("id", id);
     }
 
-    public void setCodigo( String codigo )
+    public void setCodigo( int codigo )
     {
         set("codigo", codigo);
     }
@@ -52,9 +52,9 @@ public class CursoModel extends BaseModel implements Serializable
         set( "nombre", nombre );
     }       
     
-    public static CursoModel toModelFromBO(CursoBO bo)
+    public static MateriaModel toModelFromBO(MateriaBO bo)
     {
-        CursoModel cModel = new CursoModel( );
+        MateriaModel cModel = new MateriaModel( );
         cModel.setId( bo.getId( ));
         cModel.setCodigo( bo.getCodigo( ) );
         cModel.setNombre( bo.getNombre( ) );

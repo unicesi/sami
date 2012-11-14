@@ -17,15 +17,15 @@ public class MetaTerminal implements Serializable {
 	@Id
 	private int id;
 
-	//bi-directional many-to-one association to ObjetivoTerminal
-    @ManyToOne
-	@JoinColumn(name="id_obj_terminal")
-	private ObjetivoTerminal objetivosTerminale;
-
 	//bi-directional many-to-one association to Unidad
     @ManyToOne
-	@JoinColumn(name="id_unidad")
+	@JoinColumn(name="FK_IdUnidad")
 	private Unidad unidade;
+
+	//bi-directional many-to-one association to ObjetivoTerminal
+    @ManyToOne
+	@JoinColumn(name="FK_IdObjetivoTerminal")
+	private ObjetivoTerminal objetivosTerminale;
 
 	//bi-directional many-to-one association to ObjetivoEspecifico
 	@OneToMany(mappedBy="metasTerminale")
@@ -42,20 +42,20 @@ public class MetaTerminal implements Serializable {
 		this.id = id;
 	}
 
-	public ObjetivoTerminal getObjetivosTerminale() {
-		return this.objetivosTerminale;
-	}
-
-	public void setObjetivosTerminale(ObjetivoTerminal objetivosTerminale) {
-		this.objetivosTerminale = objetivosTerminale;
-	}
-	
 	public Unidad getUnidade() {
 		return this.unidade;
 	}
 
 	public void setUnidade(Unidad unidade) {
 		this.unidade = unidade;
+	}
+	
+	public ObjetivoTerminal getObjetivosTerminale() {
+		return this.objetivosTerminale;
+	}
+
+	public void setObjetivosTerminale(ObjetivoTerminal objetivosTerminale) {
+		this.objetivosTerminale = objetivosTerminale;
 	}
 	
 	public List<ObjetivoEspecifico> getObjetivosEspecificos() {
