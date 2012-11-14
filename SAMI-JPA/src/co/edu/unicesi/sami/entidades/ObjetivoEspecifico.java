@@ -26,6 +26,10 @@ public class ObjetivoEspecifico implements Serializable {
 	@JoinColumn(name="metas_terminales_id")
 	private MetaTerminal metasTerminale;
 
+	//bi-directional many-to-one association to ObjetivoEspecificoCompetenciaEspecifica
+	@OneToMany(mappedBy="objetivosEspecifico")
+	private List<ObjetivoEspecificoCompetenciaEspecifica> objetivosespecificosCompetenciasespecificas;
+
 	//bi-directional many-to-one association to Saber
 	@OneToMany(mappedBy="objetivosEspecifico")
 	private List<Saber> saberes;
@@ -63,6 +67,14 @@ public class ObjetivoEspecifico implements Serializable {
 
 	public void setMetasTerminale(MetaTerminal metasTerminale) {
 		this.metasTerminale = metasTerminale;
+	}
+	
+	public List<ObjetivoEspecificoCompetenciaEspecifica> getObjetivosespecificosCompetenciasespecificas() {
+		return this.objetivosespecificosCompetenciasespecificas;
+	}
+
+	public void setObjetivosespecificosCompetenciasespecificas(List<ObjetivoEspecificoCompetenciaEspecifica> objetivosespecificosCompetenciasespecificas) {
+		this.objetivosespecificosCompetenciasespecificas = objetivosespecificosCompetenciasespecificas;
 	}
 	
 	public List<Saber> getSaberes() {

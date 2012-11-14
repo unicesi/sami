@@ -5,16 +5,16 @@ import javax.persistence.*;
 
 
 /**
- * The persistent class for the objetivosterminales_competenciasespecificas database table.
+ * The persistent class for the objetivosespecificos_competenciasespecificas database table.
  * 
  */
 @Entity
-@Table(name="objetivosterminales_competenciasespecificas")
-public class ObjetivoTerminalCompetenciaEspecifica implements Serializable {
+@Table(name="objetivosespecificos_competenciasespecificas")
+public class ObjetivoEspecificoCompetenciaEspecifica implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@EmbeddedId
-	private ObjetivoTerminalCompetenciaEspecificaPK id;
+	private ObjetivoEspecificoCompetenciaEspecificaPK id;
 
 	private String aplica;
 
@@ -22,10 +22,10 @@ public class ObjetivoTerminalCompetenciaEspecifica implements Serializable {
 
 	private String introduce;
 
-	//bi-directional many-to-one association to ObjetivoTerminal
+	//bi-directional many-to-one association to ObjetivoEspecifico
     @ManyToOne
-	@JoinColumn(name="FK_IdObjetivoTerminal")
-	private ObjetivoTerminal objetivosTerminale;
+	@JoinColumn(name="FK_IdObjetivoEspecifico")
+	private ObjetivoEspecifico objetivosEspecifico;
 
 	//bi-directional many-to-one association to CompetenciaEspecificaPrograma
     @ManyToOne
@@ -35,14 +35,14 @@ public class ObjetivoTerminalCompetenciaEspecifica implements Serializable {
 		})
 	private CompetenciaEspecificaPrograma competenciasespecificasPrograma;
 
-    public ObjetivoTerminalCompetenciaEspecifica() {
+    public ObjetivoEspecificoCompetenciaEspecifica() {
     }
 
-	public ObjetivoTerminalCompetenciaEspecificaPK getId() {
+	public ObjetivoEspecificoCompetenciaEspecificaPK getId() {
 		return this.id;
 	}
 
-	public void setId(ObjetivoTerminalCompetenciaEspecificaPK id) {
+	public void setId(ObjetivoEspecificoCompetenciaEspecificaPK id) {
 		this.id = id;
 	}
 	
@@ -70,12 +70,12 @@ public class ObjetivoTerminalCompetenciaEspecifica implements Serializable {
 		this.introduce = introduce;
 	}
 
-	public ObjetivoTerminal getObjetivosTerminale() {
-		return this.objetivosTerminale;
+	public ObjetivoEspecifico getObjetivosEspecifico() {
+		return this.objetivosEspecifico;
 	}
 
-	public void setObjetivosTerminale(ObjetivoTerminal objetivosTerminale) {
-		this.objetivosTerminale = objetivosTerminale;
+	public void setObjetivosEspecifico(ObjetivoEspecifico objetivosEspecifico) {
+		this.objetivosEspecifico = objetivosEspecifico;
 	}
 	
 	public CompetenciaEspecificaPrograma getCompetenciasespecificasPrograma() {

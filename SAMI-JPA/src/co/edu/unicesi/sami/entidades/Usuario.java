@@ -19,10 +19,6 @@ public class Usuario implements Serializable {
 
 	private String contraseña;
 
-	//bi-directional many-to-many association to Rol
-	@ManyToMany(mappedBy="usuarios")
-	private List<Rol> roles;
-
 	//bi-directional many-to-many association to Programa
     @ManyToMany
 	@JoinTable(
@@ -35,6 +31,10 @@ public class Usuario implements Serializable {
 			}
 		)
 	private List<Programa> programas;
+
+	//bi-directional many-to-many association to Rol
+	@ManyToMany(mappedBy="usuarios")
+	private List<Rol> roles;
 
     public Usuario() {
     }
@@ -55,20 +55,20 @@ public class Usuario implements Serializable {
 		this.contraseña = contraseña;
 	}
 
-	public List<Rol> getRoles() {
-		return this.roles;
-	}
-
-	public void setRoles(List<Rol> roles) {
-		this.roles = roles;
-	}
-	
 	public List<Programa> getProgramas() {
 		return this.programas;
 	}
 
 	public void setProgramas(List<Programa> programas) {
 		this.programas = programas;
+	}
+	
+	public List<Rol> getRoles() {
+		return this.roles;
+	}
+
+	public void setRoles(List<Rol> roles) {
+		this.roles = roles;
 	}
 	
 }

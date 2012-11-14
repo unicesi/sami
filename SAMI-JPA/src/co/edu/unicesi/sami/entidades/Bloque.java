@@ -21,6 +21,15 @@ public class Bloque implements Serializable {
 
 	private String nombre;
 
+	//bi-directional many-to-one association to Programa
+    @ManyToOne
+	@JoinColumn(name="FK_CodigoPrograma")
+	private Programa programa;
+
+	//bi-directional many-to-one association to BloqueCompetenciaEspecifica
+	@OneToMany(mappedBy="bloque")
+	private List<BloqueCompetenciaEspecifica> bloquesCompetenciasespecificas;
+
 	//bi-directional many-to-many association to Materia
     @ManyToMany
 	@JoinTable(
@@ -33,15 +42,6 @@ public class Bloque implements Serializable {
 			}
 		)
 	private List<Materia> materias;
-
-	//bi-directional many-to-one association to Programa
-    @ManyToOne
-	@JoinColumn(name="FK_CodigoPrograma")
-	private Programa programa;
-
-	//bi-directional many-to-one association to BloqueCompetenciaEspecifica
-	@OneToMany(mappedBy="bloque")
-	private List<BloqueCompetenciaEspecifica> bloquesCompetenciasespecificas;
 
     public Bloque() {
     }
@@ -70,14 +70,6 @@ public class Bloque implements Serializable {
 		this.nombre = nombre;
 	}
 
-	public List<Materia> getMaterias() {
-		return this.materias;
-	}
-
-	public void setMaterias(List<Materia> materias) {
-		this.materias = materias;
-	}
-	
 	public Programa getPrograma() {
 		return this.programa;
 	}
@@ -92,6 +84,14 @@ public class Bloque implements Serializable {
 
 	public void setBloquesCompetenciasespecificas(List<BloqueCompetenciaEspecifica> bloquesCompetenciasespecificas) {
 		this.bloquesCompetenciasespecificas = bloquesCompetenciasespecificas;
+	}
+	
+	public List<Materia> getMaterias() {
+		return this.materias;
+	}
+
+	public void setMaterias(List<Materia> materias) {
+		this.materias = materias;
 	}
 	
 }

@@ -24,6 +24,8 @@
 		<class>co.edu.unicesi.sami.entidades.ObjetivoEspecifico</class>
 		<class>co.edu.unicesi.sami.entidades.ObjetivoGeneral</class>
 		<class>co.edu.unicesi.sami.entidades.ObjetivoTerminal</class>
+		<class>co.edu.unicesi.sami.entidades.ObjetivoEspecificoCompetenciaEspecifica</class>
+		<class>co.edu.unicesi.sami.entidades.ObjetivoEspecificoCompetenciaEspecificaPK</class>
 		<class>co.edu.unicesi.sami.entidades.ObjetivoTerminalCompetenciaEspecifica</class>
 		<class>co.edu.unicesi.sami.entidades.ObjetivoTerminalCompetenciaEspecificaPK</class>
 		<class>co.edu.unicesi.sami.entidades.Programa</class>
@@ -36,6 +38,6 @@
 		<class>co.edu.unicesi.sami.entidades.Unidad</class>
 		<class>co.edu.unicesi.sami.entidades.Usuario</class>
 		<class>co.edu.unicesi.sami.entidades.UsuarioRol</class>
-		<class>co.edu.unicesi.sami.entidades.UsuarioRolPK</class>		
+		<class>co.edu.unicesi.sami.entidades.UsuarioRolPK</class>	
 	</persistence-unit>
 </persistence>

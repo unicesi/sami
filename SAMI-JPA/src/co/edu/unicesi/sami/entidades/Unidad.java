@@ -23,6 +23,10 @@ public class Unidad implements Serializable {
 
 	private int numero;
 
+	//bi-directional many-to-one association to MetaTerminal
+	@OneToMany(mappedBy="unidade")
+	private List<MetaTerminal> metasTerminales;
+
 	//bi-directional many-to-one association to Sesion
 	@OneToMany(mappedBy="unidade")
 	private List<Sesion> sesiones;
@@ -31,10 +35,6 @@ public class Unidad implements Serializable {
     @ManyToOne
 	@JoinColumn(name="materias_codigo")
 	private Materia materia;
-
-	//bi-directional many-to-one association to MetaTerminal
-	@OneToMany(mappedBy="unidade")
-	private List<MetaTerminal> metasTerminales;
 
     public Unidad() {
     }
@@ -71,6 +71,14 @@ public class Unidad implements Serializable {
 		this.numero = numero;
 	}
 
+	public List<MetaTerminal> getMetasTerminales() {
+		return this.metasTerminales;
+	}
+
+	public void setMetasTerminales(List<MetaTerminal> metasTerminales) {
+		this.metasTerminales = metasTerminales;
+	}
+	
 	public List<Sesion> getSesiones() {
 		return this.sesiones;
 	}
@@ -85,14 +93,6 @@ public class Unidad implements Serializable {
 
 	public void setMateria(Materia materia) {
 		this.materia = materia;
-	}
-	
-	public List<MetaTerminal> getMetasTerminales() {
-		return this.metasTerminales;
-	}
-
-	public void setMetasTerminales(List<MetaTerminal> metasTerminales) {
-		this.metasTerminales = metasTerminales;
 	}
 	
 }

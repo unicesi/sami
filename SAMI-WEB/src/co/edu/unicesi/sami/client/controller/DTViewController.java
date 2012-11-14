@@ -61,6 +61,7 @@ public class DTViewController extends Controller {
 		registerEventTypes(DTEvent.LISTAR_RECURSOS_POR_SABER_EN_SABERES);
 		registerEventTypes(DTEvent.LISTAR_RECURSOS_DIALOGO_AGREGAR_SESION);
 		registerEventTypes(DTEvent.LISTAR_SESIONES_DIALOGO_GESTION_SESION);
+		registerEventTypes(DTEvent.LISTAR_TRABAJOS_DIALOGO_GESTION_SESION);
 	}
 
 	@Override
@@ -305,6 +306,15 @@ public class DTViewController extends Controller {
 			}
 			TabPlanificador tabPlanificador = Registry.get("tabPlanificador");
 			tabPlanificador.actualizarTablaSesionesDialogo(objModel);
+		}
+		else if(event.getType().equals(DTEvent.LISTAR_TRABAJOS_DIALOGO_GESTION_SESION)){
+			List<TrabajoAsignadoBO> trabajosAsignados=(List<TrabajoAsignadoBO>)event.getData();
+			ListStore<TrabajoAsignadoModel> objModel=new ListStore<TrabajoAsignadoModel>();
+			for(TrabajoAsignadoBO bo:trabajosAsignados){
+				objModel.add(TrabajoAsignadoModel.toModelFromBO(bo));
+			}
+			TabPlanificador tabPlanificador=Registry.get("tabPlanificador");
+			tabPlanificador.actualizarTablaTrabajos(objModel);
 		}
 	}
 }

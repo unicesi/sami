@@ -29,6 +29,10 @@ public class CompetenciaEspecificaPrograma implements Serializable {
 	@OneToMany(mappedBy="competenciasespecificasPrograma")
 	private List<MateriaCompetenciaEspecifica> materiasCompetenciasespecificas;
 
+	//bi-directional many-to-one association to ObjetivoEspecificoCompetenciaEspecifica
+	@OneToMany(mappedBy="competenciasespecificasPrograma")
+	private List<ObjetivoEspecificoCompetenciaEspecifica> objetivosespecificosCompetenciasespecificas;
+
 	//bi-directional many-to-one association to ObjetivoTerminalCompetenciaEspecifica
 	@OneToMany(mappedBy="competenciasespecificasPrograma")
 	private List<ObjetivoTerminalCompetenciaEspecifica> objetivosterminalesCompetenciasespecificas;
@@ -66,6 +70,14 @@ public class CompetenciaEspecificaPrograma implements Serializable {
 
 	public void setMateriasCompetenciasespecificas(List<MateriaCompetenciaEspecifica> materiasCompetenciasespecificas) {
 		this.materiasCompetenciasespecificas = materiasCompetenciasespecificas;
+	}
+	
+	public List<ObjetivoEspecificoCompetenciaEspecifica> getObjetivosespecificosCompetenciasespecificas() {
+		return this.objetivosespecificosCompetenciasespecificas;
+	}
+
+	public void setObjetivosespecificosCompetenciasespecificas(List<ObjetivoEspecificoCompetenciaEspecifica> objetivosespecificosCompetenciasespecificas) {
+		this.objetivosespecificosCompetenciasespecificas = objetivosespecificosCompetenciasespecificas;
 	}
 	
 	public List<ObjetivoTerminalCompetenciaEspecifica> getObjetivosterminalesCompetenciasespecificas() {

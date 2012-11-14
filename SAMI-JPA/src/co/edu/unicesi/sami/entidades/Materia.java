@@ -37,10 +37,6 @@ public class Materia implements Serializable {
 	@OneToMany(mappedBy="materia")
 	private List<MateriaCompetenciaEspecifica> materiasCompetenciasespecificas;
 
-	//bi-directional many-to-one association to Unidad
-	@OneToMany(mappedBy="materia")
-	private List<Unidad> unidades;
-
 	//bi-directional many-to-one association to ObjetivoGeneral
 	@OneToMany(mappedBy="materia")
 	private List<ObjetivoGeneral> objetivosGenerales;
@@ -48,6 +44,10 @@ public class Materia implements Serializable {
 	//bi-directional many-to-one association to ObjetivoTerminal
 	@OneToMany(mappedBy="materia")
 	private List<ObjetivoTerminal> objetivosTerminales;
+
+	//bi-directional many-to-one association to Unidad
+	@OneToMany(mappedBy="materia")
+	private List<Unidad> unidades;
 
     public Materia() {
     }
@@ -116,14 +116,6 @@ public class Materia implements Serializable {
 		this.materiasCompetenciasespecificas = materiasCompetenciasespecificas;
 	}
 	
-	public List<Unidad> getUnidades() {
-		return this.unidades;
-	}
-
-	public void setUnidades(List<Unidad> unidades) {
-		this.unidades = unidades;
-	}
-	
 	public List<ObjetivoGeneral> getObjetivosGenerales() {
 		return this.objetivosGenerales;
 	}
@@ -138,6 +130,14 @@ public class Materia implements Serializable {
 
 	public void setObjetivosTerminales(List<ObjetivoTerminal> objetivosTerminales) {
 		this.objetivosTerminales = objetivosTerminales;
+	}
+	
+	public List<Unidad> getUnidades() {
+		return this.unidades;
+	}
+
+	public void setUnidades(List<Unidad> unidades) {
+		this.unidades = unidades;
 	}
 	
 }

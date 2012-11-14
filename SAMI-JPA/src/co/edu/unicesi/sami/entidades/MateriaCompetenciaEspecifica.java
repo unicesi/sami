@@ -22,6 +22,11 @@ public class MateriaCompetenciaEspecifica implements Serializable {
 
 	private byte introduce;
 
+	//bi-directional many-to-one association to Materia
+    @ManyToOne
+	@JoinColumn(name="FK_CodigoMateria")
+	private Materia materia;
+
 	//bi-directional many-to-one association to CompetenciaEspecificaPrograma
     @ManyToOne
 	@JoinColumns({
@@ -29,11 +34,6 @@ public class MateriaCompetenciaEspecifica implements Serializable {
 		@JoinColumn(name="FK_IdCompetenciaEspecifica", referencedColumnName="FK_idCompetenciaEspecifica")
 		})
 	private CompetenciaEspecificaPrograma competenciasespecificasPrograma;
-
-	//bi-directional many-to-one association to Materia
-    @ManyToOne
-	@JoinColumn(name="FK_CodigoMateria")
-	private Materia materia;
 
     public MateriaCompetenciaEspecifica() {
     }
@@ -70,20 +70,20 @@ public class MateriaCompetenciaEspecifica implements Serializable {
 		this.introduce = introduce;
 	}
 
-	public CompetenciaEspecificaPrograma getCompetenciasespecificasPrograma() {
-		return this.competenciasespecificasPrograma;
-	}
-
-	public void setCompetenciasespecificasPrograma(CompetenciaEspecificaPrograma competenciasespecificasPrograma) {
-		this.competenciasespecificasPrograma = competenciasespecificasPrograma;
-	}
-	
 	public Materia getMateria() {
 		return this.materia;
 	}
 
 	public void setMateria(Materia materia) {
 		this.materia = materia;
+	}
+	
+	public CompetenciaEspecificaPrograma getCompetenciasespecificasPrograma() {
+		return this.competenciasespecificasPrograma;
+	}
+
+	public void setCompetenciasespecificasPrograma(CompetenciaEspecificaPrograma competenciasespecificasPrograma) {
+		this.competenciasespecificasPrograma = competenciasespecificasPrograma;
 	}
 	
 }
