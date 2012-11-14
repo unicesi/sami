@@ -10,9 +10,11 @@ import co.edu.unicesi.sami.client.competencias.CompetenciasService;
 import co.edu.unicesi.sami.client.competencias.CompetenciasServiceAsync;
 import co.edu.unicesi.sami.client.controller.DTEvent;
 import co.edu.unicesi.sami.client.home.dialogos.DialogoAgregarObjTerminal;
+import co.edu.unicesi.sami.client.home.dialogos.DialogoAsociarCompetencia;
 import co.edu.unicesi.sami.client.home.dialogos.DialogoEditarObjTerminal;
 import co.edu.unicesi.sami.client.listados.ListadosService;
 import co.edu.unicesi.sami.client.listados.ListadosServiceAsync;
+import co.edu.unicesi.sami.client.model.CompetenciaModel;
 import co.edu.unicesi.sami.client.model.MateriaModel;
 import co.edu.unicesi.sami.client.model.MetaTerminalModel;
 import co.edu.unicesi.sami.client.model.ObjetivoTerminalModel;
@@ -57,12 +59,15 @@ public class TabObjTerminales extends TabItem {
 
 	private DialogoAgregarObjTerminal dialogoAgregarObjTerminal;
 	private DialogoEditarObjTerminal dialogoEditarObjTerminal;
+	private DialogoAsociarCompetencia dialogoAsociarCompetencia;
 
 	private Text labObjGeneral;
 	private TextArea txtObjGeneral;
 	private Button btnAgregar;
+	private Button btnAsociarCompetencia;
 
 	private Grid<ObjetivoTerminalModel> gridObjTerminales;
+	private Grid<CompetenciaModel> gridCompetencias;
 
 	public TabObjTerminales() {
 		setText(MultiLingualConstants.tabObjTerminales_text());
@@ -78,24 +83,47 @@ public class TabObjTerminales extends TabItem {
 		container.add(txtObjGeneral, new AbsoluteData(100, 50));
 
 		btnAgregar = new Button(MultiLingualConstants.btnAgregar_text());
-		container.add(btnAgregar, new AbsoluteData(375, 510));
+		container.add(btnAgregar, new AbsoluteData(275, 510));
+		
+		btnAsociarCompetencia = new Button("Asociar");
+		container.add(btnAsociarCompetencia,new AbsoluteData(475,510));
+		
 
 		gridObjTerminales = new Grid<ObjetivoTerminalModel>(
 				new ListStore<ObjetivoTerminalModel>(), getColumnModel());
 		gridObjTerminales.setBorders(true);
 		gridObjTerminales.setStripeRows(true);
-		gridObjTerminales.setSize("600px", "275px");
-
+		gridObjTerminales.setSize("430px", "275px");
+				
 		ContentPanel cpObjs = new ContentPanel();
 		cpObjs.setBodyBorder(false);
 		cpObjs.setHeading(MultiLingualConstants.tableObjTerminales_heading());
 		cpObjs.setButtonAlign(HorizontalAlignment.CENTER);
 		cpObjs.setLayout(new FitLayout());
-		cpObjs.setSize(600, 275);
+		cpObjs.setSize(430, 275);
 		cpObjs.add(gridObjTerminales);
 		container.add(cpObjs, new AbsoluteData(100, 225));
+		cpObjs.setSize("370", "275");
 
 		add(container);
+		
+		gridCompetencias=new Grid<CompetenciaModel>(new ListStore<CompetenciaModel>(),getColumnCompetenciaModel());
+		gridCompetencias.setBorders(true);
+		gridCompetencias.setStripeRows(true);
+		gridCompetencias.setSize("130px","275px");
+		
+		ContentPanel cpObjs2 = new ContentPanel();
+		cpObjs2.setBodyBorder(false);
+		cpObjs2.setHeading("Competencias");
+		cpObjs2.setButtonAlign(HorizontalAlignment.CENTER);
+		cpObjs2.setLayout(new FitLayout());
+		cpObjs2.setSize(130, 275);
+		cpObjs2.add(gridCompetencias);
+		container.add(cpObjs2, new AbsoluteData(510, 225));
+		cpObjs2.setSize("190", "275");
+
+		add(container);
+
 
 		inicializarDialogos();
 
@@ -141,7 +169,14 @@ public class TabObjTerminales extends TabItem {
 					}
 				});
 	}
-
+	private void eventoAsociarCompetencia(){
+		btnAsociarCompetencia.addSelectionListener(new SelectionListener<ButtonEvent>() {
+			@Override
+			public void componentSelected(ButtonEvent ce) {
+				dialogoAsociarCompetencia.show();
+			}
+		});
+	}
 	public void agregarObjTerminal(String nombre, String contenido) {
 		ObjetivoTerminalBO objTerminal = new ObjetivoTerminalBO();
 		objTerminal.setNombre(nombre);
@@ -243,5 +278,20 @@ public class TabObjTerminales extends TabItem {
 		configsObjTerminales.add(columnObj);
 
 		return new ColumnModel(configsObjTerminales);
+	}
+	private ColumnModel getColumnCompetenciaModel(){
+		List<ColumnConfig> configsCompetencias = new ArrayList<ColumnConfig>();
+
+		ColumnConfig columnObj = new ColumnConfig("nombre",
+				"Nombre", 50);
+		columnObj.setAlignment(HorizontalAlignment.CENTER);
+		configsCompetencias.add(columnObj);
+
+		columnObj = new ColumnConfig("descripcion",
+				"Descripción", 525);
+		columnObj.setAlignment(HorizontalAlignment.LEFT);
+		configsCompetencias.add(columnObj);
+
+		return new ColumnModel(configsCompetencias);
 	}
 }
