@@ -11,47 +11,40 @@ import co.edu.unicesi.sami.curso.GestionCursoRemote;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
-public class CursoServiceImpl extends RemoteServiceServlet implements CursoService
-{
+public class CursoServiceImpl extends RemoteServiceServlet implements
+		CursoService {
 
-    private InitialContext context;
-    private GestionCursoRemote cursoService;
-    
-    public CursoServiceImpl()
-    {
-        try
-        {
-            context = new InitialContext( );
-            cursoService = (GestionCursoRemote) context.lookup("java:global/SAMI-EAR/SAMI-EJB/GestionCursoBean!co.edu.unicesi.sami.curso.GestionCursoRemote");
-        }
-        catch(NamingException e)
-        {
-            e.printStackTrace( );
-        }
-    }
-    
-    @Override
-    public int agregarCurso( MateriaBO curso )
-    {
-        return cursoService.agregarCurso( curso );
-    }
+	private InitialContext context;
+	private GestionCursoRemote cursoService;
 
-    @Override
-    public int editarCurso( MateriaBO curso )
-    {
-        return cursoService.editarCurso( curso );
-    }
+	public CursoServiceImpl() {
+		try {
+			context = new InitialContext();
+			cursoService = (GestionCursoRemote) context
+					.lookup("java:global/SAMI-EAR/SAMI-EJB/GestionCursoBean!co.edu.unicesi.sami.curso.GestionCursoRemote");
+		} catch (NamingException e) {
+			e.printStackTrace();
+		}
+	}
 
-    @Override
-    public MateriaBO buscarCurso( int idCurso )
-    {
-        return cursoService.buscarCurso( idCurso );
-    }
+	@Override
+	public int agregarCurso(MateriaBO curso) {
+		return cursoService.agregarCurso(curso);
+	}
 
-    @Override
-    public List<MateriaBO> listarCursos( )
-    {
-        return cursoService.listarCursos( );
-    }
+	@Override
+	public int editarCurso(MateriaBO curso) {
+		return cursoService.editarCurso(curso);
+	}
+
+	@Override
+	public MateriaBO buscarCurso(int idCurso) {
+		return cursoService.buscarCurso(idCurso);
+	}
+
+	@Override
+	public List<MateriaBO> listarCursos() {
+		return cursoService.listarCursos();
+	}
 
 }

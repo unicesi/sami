@@ -8,10 +8,7 @@
   <inherits name='com.google.gwt.user.theme.clean.Clean'/>
   <inherits name="com.extjs.gxt.ui.GXT"/>
   <inherits name="co.edu.unicesi.sami.SAMI"/>
-  <inherits name="com.gwtext.GwtExt"/>
   <inherits name="com.google.gwt.i18n.I18N"/>
-  <inherits name="com.gwtext.GwtExt"/>
-  <inherits name="com.gwtext.GwtExt"/>
   <!-- Other module inherits                                      -->
 
   <!-- Specify the app entry point class.                         -->

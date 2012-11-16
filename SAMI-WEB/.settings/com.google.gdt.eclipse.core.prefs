@@ -1,7 +1,7 @@
-#Wed Nov 14 13:04:05 COT 2012
+#Fri Nov 16 08:36:11 COT 2012
 eclipse.preferences.version=1
 jarsExcludedFromWebInfLib=
-lastWarOutDir=C\:/WorkspaceGitHub/sami/SAMI-WEB
+lastWarOutDir=C\:/glassfish/glassfish/domains/domain1/eclipseApps/SAMI-WEB
 launchConfigExternalUrlPrefix=
 warSrcDir=WebContent
 warSrcDirIsOutput=false
