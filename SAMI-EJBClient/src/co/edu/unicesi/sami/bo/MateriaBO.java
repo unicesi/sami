@@ -5,9 +5,10 @@ import java.util.List;
 
 public class MateriaBO implements Serializable
 {
-    private int id;
-    private int codigo;
+    private String codigo;
     private String nombre;
+    private String descripcion;  
+    private int creditos;
     private int idObjGeneral;
     private String contenidoObjGeneral;
     private List<Integer> unidades;
@@ -21,12 +22,7 @@ public class MateriaBO implements Serializable
         
     }
 
-    public int getId( )
-    {
-        return id;
-    }
-
-    public int getCodigo( )
+    public String getCodigo( )
     {
         return codigo;
     }
@@ -34,6 +30,16 @@ public class MateriaBO implements Serializable
     public String getNombre( )
     {
         return nombre;
+    }
+    
+    public String getDescripcion( )
+    {
+        return descripcion;
+    }
+    
+    public int getCreditos( )
+    {
+        return creditos;
     }
 
     public int getIdObjGeneral( )
@@ -61,12 +67,7 @@ public class MateriaBO implements Serializable
         return materiales;
     }
 
-    public void setId( int id )
-    {
-        this.id = id;
-    }
-
-    public void setCodigo( int codigo )
+    public void setCodigo( String codigo )
     {
         this.codigo = codigo;
     }
@@ -75,6 +76,17 @@ public class MateriaBO implements Serializable
     {
         this.nombre = nombre;
     }
+    
+    public void setDescripcion( String descripcion )
+    {
+        this.descripcion = descripcion;
+    }
+    
+    public void setCreditos( int creditos )
+    {
+        this.creditos = creditos;
+    }
+    
     public void setIdObjGeneral( int idObjGeneral )
     {
         this.idObjGeneral = idObjGeneral;

@@ -15,15 +15,13 @@ public class Materia implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private int codigo;
+	private String codigo;
 
 	private int creditos;
 
 	private String descripcion;
 
 	private String nombre;
-
-	private String semestre;
 
 	//bi-directional many-to-many association to Bloque
 	@ManyToMany(mappedBy="materias")
@@ -32,10 +30,6 @@ public class Materia implements Serializable {
 	//bi-directional many-to-one association to Material
 	@OneToMany(mappedBy="materia")
 	private List<Material> materiales;
-
-	//bi-directional many-to-one association to MateriaCompetenciaEspecifica
-	@OneToMany(mappedBy="materia")
-	private List<MateriaCompetenciaEspecifica> materiasCompetenciasespecificas;
 
 	//bi-directional many-to-one association to ObjetivoGeneral
 	@OneToMany(mappedBy="materia")
@@ -52,11 +46,11 @@ public class Materia implements Serializable {
     public Materia() {
     }
 
-	public int getCodigo() {
+	public String getCodigo() {
 		return this.codigo;
 	}
 
-	public void setCodigo(int codigo) {
+	public void setCodigo(String codigo) {
 		this.codigo = codigo;
 	}
 
@@ -84,14 +78,6 @@ public class Materia implements Serializable {
 		this.nombre = nombre;
 	}
 
-	public String getSemestre() {
-		return this.semestre;
-	}
-
-	public void setSemestre(String semestre) {
-		this.semestre = semestre;
-	}
-
 	public List<Bloque> getBloques() {
 		return this.bloques;
 	}
@@ -106,14 +92,6 @@ public class Materia implements Serializable {
 
 	public void setMateriales(List<Material> materiales) {
 		this.materiales = materiales;
-	}
-	
-	public List<MateriaCompetenciaEspecifica> getMateriasCompetenciasespecificas() {
-		return this.materiasCompetenciasespecificas;
-	}
-
-	public void setMateriasCompetenciasespecificas(List<MateriaCompetenciaEspecifica> materiasCompetenciasespecificas) {
-		this.materiasCompetenciasespecificas = materiasCompetenciasespecificas;
 	}
 	
 	public List<ObjetivoGeneral> getObjetivosGenerales() {

@@ -9,17 +9,15 @@
 		<class>co.edu.unicesi.sami.entidades.Bloque</class>
 		<class>co.edu.unicesi.sami.entidades.BloqueCompetenciaEspecifica</class>
 		<class>co.edu.unicesi.sami.entidades.BloqueCompetenciaEspecificaPK</class>
-		<class>co.edu.unicesi.sami.entidades.Calificacion</class>
-		<class>co.edu.unicesi.sami.entidades.CalificacionPK</class>
 		<class>co.edu.unicesi.sami.entidades.CompetenciaEspecifica</class>
 		<class>co.edu.unicesi.sami.entidades.CompetenciaEspecificaPrograma</class>
 		<class>co.edu.unicesi.sami.entidades.CompetenciaEspecificaProgramaPK</class>
 		<class>co.edu.unicesi.sami.entidades.CompetenciaGeneral</class>
 		<class>co.edu.unicesi.sami.entidades.CompetenciaTerminal</class>
+		<class>co.edu.unicesi.sami.entidades.CompetenciaTerminalPrograma</class>
+		<class>co.edu.unicesi.sami.entidades.CompetenciaTerminalProgramaPK</class>
 		<class>co.edu.unicesi.sami.entidades.Material</class>
 		<class>co.edu.unicesi.sami.entidades.Materia</class>
-		<class>co.edu.unicesi.sami.entidades.MateriaCompetenciaEspecifica</class>
-		<class>co.edu.unicesi.sami.entidades.MateriaCompetenciaEspecificaPK</class>
 		<class>co.edu.unicesi.sami.entidades.MetaTerminal</class>
 		<class>co.edu.unicesi.sami.entidades.ObjetivoEspecifico</class>
 		<class>co.edu.unicesi.sami.entidades.ObjetivoGeneral</class>

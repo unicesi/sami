@@ -26,18 +26,9 @@ public class CompetenciaEspecifica implements Serializable {
 	@JoinColumn(name="idCompetenciaTerminal")
 	private CompetenciaTerminal competenciasterminale;
 
-	//bi-directional many-to-many association to Programa
-    @ManyToMany
-	@JoinTable(
-		name="competenciasespecificas_programas"
-		, joinColumns={
-			@JoinColumn(name="FK_idCompetenciaEspecifica")
-			}
-		, inverseJoinColumns={
-			@JoinColumn(name="FK_CodigoPrograma")
-			}
-		)
-	private List<Programa> programas;
+	//bi-directional many-to-one association to CompetenciaEspecificaPrograma
+	@OneToMany(mappedBy="competenciasespecifica")
+	private List<CompetenciaEspecificaPrograma> competenciasespecificasProgramas;
 
     public CompetenciaEspecifica() {
     }
@@ -74,12 +65,12 @@ public class CompetenciaEspecifica implements Serializable {
 		this.competenciasterminale = competenciasterminale;
 	}
 	
-	public List<Programa> getProgramas() {
-		return this.programas;
+	public List<CompetenciaEspecificaPrograma> getCompetenciasespecificasProgramas() {
+		return this.competenciasespecificasProgramas;
 	}
 
-	public void setProgramas(List<Programa> programas) {
-		this.programas = programas;
+	public void setCompetenciasespecificasProgramas(List<CompetenciaEspecificaPrograma> competenciasespecificasProgramas) {
+		this.competenciasespecificasProgramas = competenciasespecificasProgramas;
 	}
 	
 }

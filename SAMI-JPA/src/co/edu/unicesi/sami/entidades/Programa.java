@@ -15,7 +15,7 @@ public class Programa implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private int codigo;
+	private String codigo;
 
 	private String descripcion;
 
@@ -25,30 +25,26 @@ public class Programa implements Serializable {
 	@OneToMany(mappedBy="programa")
 	private List<Bloque> bloques;
 
-	//bi-directional many-to-many association to CompetenciaEspecifica
-	@ManyToMany(mappedBy="programas")
-	private List<CompetenciaEspecifica> competenciasespecificas;
+	//bi-directional many-to-one association to CompetenciaEspecificaPrograma
+	@OneToMany(mappedBy="programa")
+	private List<CompetenciaEspecificaPrograma> competenciasespecificasProgramas;
 
 	//bi-directional many-to-many association to CompetenciaGeneral
 	@ManyToMany(mappedBy="programas")
 	private List<CompetenciaGeneral> competenciasgenerales;
 
-	//bi-directional many-to-many association to CompetenciaTerminal
-	@ManyToMany(mappedBy="programas")
-	private List<CompetenciaTerminal> competenciasterminales;
-
-	//bi-directional many-to-many association to Usuario
-	@ManyToMany(mappedBy="programas")
-	private List<Usuario> usuarios;
+	//bi-directional many-to-one association to CompetenciaTerminalPrograma
+	@OneToMany(mappedBy="programa")
+	private List<CompetenciaTerminalPrograma> competenciasterminalesProgramas;
 
     public Programa() {
     }
 
-	public int getCodigo() {
+	public String getCodigo() {
 		return this.codigo;
 	}
 
-	public void setCodigo(int codigo) {
+	public void setCodigo(String codigo) {
 		this.codigo = codigo;
 	}
 
@@ -76,12 +72,12 @@ public class Programa implements Serializable {
 		this.bloques = bloques;
 	}
 	
-	public List<CompetenciaEspecifica> getCompetenciasespecificas() {
-		return this.competenciasespecificas;
+	public List<CompetenciaEspecificaPrograma> getCompetenciasespecificasProgramas() {
+		return this.competenciasespecificasProgramas;
 	}
 
-	public void setCompetenciasespecificas(List<CompetenciaEspecifica> competenciasespecificas) {
-		this.competenciasespecificas = competenciasespecificas;
+	public void setCompetenciasespecificasProgramas(List<CompetenciaEspecificaPrograma> competenciasespecificasProgramas) {
+		this.competenciasespecificasProgramas = competenciasespecificasProgramas;
 	}
 	
 	public List<CompetenciaGeneral> getCompetenciasgenerales() {
@@ -92,20 +88,12 @@ public class Programa implements Serializable {
 		this.competenciasgenerales = competenciasgenerales;
 	}
 	
-	public List<CompetenciaTerminal> getCompetenciasterminales() {
-		return this.competenciasterminales;
+	public List<CompetenciaTerminalPrograma> getCompetenciasterminalesProgramas() {
+		return this.competenciasterminalesProgramas;
 	}
 
-	public void setCompetenciasterminales(List<CompetenciaTerminal> competenciasterminales) {
-		this.competenciasterminales = competenciasterminales;
-	}
-	
-	public List<Usuario> getUsuarios() {
-		return this.usuarios;
-	}
-
-	public void setUsuarios(List<Usuario> usuarios) {
-		this.usuarios = usuarios;
+	public void setCompetenciasterminalesProgramas(List<CompetenciaTerminalPrograma> competenciasterminalesProgramas) {
+		this.competenciasterminalesProgramas = competenciasterminalesProgramas;
 	}
 	
 }

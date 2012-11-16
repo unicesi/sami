@@ -31,7 +31,7 @@ public class ObjetivoEspecificoCompetenciaEspecifica implements Serializable {
     @ManyToOne
 	@JoinColumns({
 		@JoinColumn(name="FK_CodigoPrograma", referencedColumnName="FK_CodigoPrograma"),
-		@JoinColumn(name="FK_IdCompetenciaEspecifica", referencedColumnName="FK_idCompetenciaEspecifica")
+		@JoinColumn(name="FK_IdCompetenciaEspecifica", referencedColumnName="FK_IdCompetenciaEspecifica")
 		})
 	private CompetenciaEspecificaPrograma competenciasespecificasPrograma;
 

@@ -29,7 +29,7 @@ public class TrabajoAsignado implements Serializable {
 
 	//bi-directional many-to-one association to Sesion
     @ManyToOne
-	@JoinColumn(name="sesiones_id")
+	@JoinColumn(name="FK_IdSesion")
 	private Sesion sesione;
 
     public TrabajoAsignado() {

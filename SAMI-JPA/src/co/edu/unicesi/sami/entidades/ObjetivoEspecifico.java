@@ -23,7 +23,7 @@ public class ObjetivoEspecifico implements Serializable {
 
 	//bi-directional many-to-one association to MetaTerminal
     @ManyToOne
-	@JoinColumn(name="metas_terminales_id")
+	@JoinColumn(name="FK_IdMetaTerminal")
 	private MetaTerminal metasTerminale;
 
 	//bi-directional many-to-one association to ObjetivoEspecificoCompetenciaEspecifica

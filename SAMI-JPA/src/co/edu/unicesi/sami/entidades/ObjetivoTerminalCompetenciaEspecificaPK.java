@@ -14,7 +14,7 @@ public class ObjetivoTerminalCompetenciaEspecificaPK implements Serializable {
 
 	private int FK_IdObjetivoTerminal;
 
-	private int FK_CodigoPrograma;
+	private String FK_CodigoPrograma;
 
 	private int FK_IdCompetenciaEspecifica;
 
@@ -26,10 +26,10 @@ public class ObjetivoTerminalCompetenciaEspecificaPK implements Serializable {
 	public void setFK_IdObjetivoTerminal(int FK_IdObjetivoTerminal) {
 		this.FK_IdObjetivoTerminal = FK_IdObjetivoTerminal;
 	}
-	public int getFK_CodigoPrograma() {
+	public String getFK_CodigoPrograma() {
 		return this.FK_CodigoPrograma;
 	}
-	public void setFK_CodigoPrograma(int FK_CodigoPrograma) {
+	public void setFK_CodigoPrograma(String FK_CodigoPrograma) {
 		this.FK_CodigoPrograma = FK_CodigoPrograma;
 	}
 	public int getFK_IdCompetenciaEspecifica() {
@@ -49,7 +49,7 @@ public class ObjetivoTerminalCompetenciaEspecificaPK implements Serializable {
 		ObjetivoTerminalCompetenciaEspecificaPK castOther = (ObjetivoTerminalCompetenciaEspecificaPK)other;
 		return 
 			(this.FK_IdObjetivoTerminal == castOther.FK_IdObjetivoTerminal)
-			&& (this.FK_CodigoPrograma == castOther.FK_CodigoPrograma)
+			&& this.FK_CodigoPrograma.equals(castOther.FK_CodigoPrograma)
 			&& (this.FK_IdCompetenciaEspecifica == castOther.FK_IdCompetenciaEspecifica);
 
     }
@@ -58,7 +58,7 @@ public class ObjetivoTerminalCompetenciaEspecificaPK implements Serializable {
 		final int prime = 31;
 		int hash = 17;
 		hash = hash * prime + this.FK_IdObjetivoTerminal;
-		hash = hash * prime + this.FK_CodigoPrograma;
+		hash = hash * prime + this.FK_CodigoPrograma.hashCode();
 		hash = hash * prime + this.FK_IdCompetenciaEspecifica;
 		
 		return hash;

@@ -23,7 +23,7 @@ public class Bloque implements Serializable {
 
 	//bi-directional many-to-one association to Programa
     @ManyToOne
-	@JoinColumn(name="FK_CodigoPrograma")
+	@JoinColumn(name="FK_idPrograma")
 	private Programa programa;
 
 	//bi-directional many-to-one association to BloqueCompetenciaEspecifica

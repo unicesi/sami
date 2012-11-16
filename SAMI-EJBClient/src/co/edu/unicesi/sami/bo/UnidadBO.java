@@ -9,7 +9,6 @@ public class UnidadBO implements Serializable
     private int numero;
     private String nombre;
     private String contenido;
-    private int idCurso;
     private String codigoCurso;
     private String nombreCurso;
     private List<Integer> metasTerminales;
@@ -40,11 +39,6 @@ public class UnidadBO implements Serializable
     public String getContenido( )
     {
         return contenido;
-    }
-
-    public int getIdCurso( )
-    {
-        return idCurso;
     }
 
     public String getCodigoCurso( )
@@ -85,11 +79,6 @@ public class UnidadBO implements Serializable
     public void setContenido( String contenido )
     {
         this.contenido = contenido;
-    }
-
-    public void setIdCurso( int idCurso )
-    {
-        this.idCurso = idCurso;
     }
 
     public void setCodigoCurso( String codigoCurso )

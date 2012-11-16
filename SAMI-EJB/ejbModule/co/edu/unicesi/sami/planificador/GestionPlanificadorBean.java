@@ -39,7 +39,7 @@ public class GestionPlanificadorBean implements GestionPlanificadorRemote, Gesti
 		int resp=-1;
 
 		try {
-			Materia curso=em.find(Materia.class, material.getIdCurso());
+			Materia curso=em.find(Materia.class, material.getCodigoCurso());
 
             entidad.setFuente( material.getFuente( ) );
             entidad.setAno( material.getAno( ) );
@@ -93,7 +93,6 @@ public class GestionPlanificadorBean implements GestionPlanificadorRemote, Gesti
 
 		bo.setCodigoCurso(material.getMateria().getCodigo());
 		bo.setId(material.getId());
-		bo.setIdCurso(material.getMateria().getCodigo());
 		bo.setFuente( material.getFuente( ) );
         bo.setAno( material.getAno( ) );
         bo.setAutor(material.getAutor( ));

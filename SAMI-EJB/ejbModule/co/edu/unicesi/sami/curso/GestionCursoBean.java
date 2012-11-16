@@ -34,6 +34,8 @@ public class GestionCursoBean implements GestionCursoRemote, GestionCursoLocal {
 		try {
 			entidad.setCodigo(curso.getCodigo());
 			entidad.setNombre(curso.getNombre());
+			entidad.setCreditos(curso.getCreditos());
+			entidad.setDescripcion(curso.getDescripcion());
 			entidad.setUnidades(new ArrayList<Unidad>());
 			entidad.setObjetivosTerminales(new ArrayList<ObjetivoTerminal>());
 
@@ -52,10 +54,12 @@ public class GestionCursoBean implements GestionCursoRemote, GestionCursoLocal {
 	public int editarCurso(MateriaBO curso) {
 		int resp = -1;
 		try {
-			Materia entidad = em.find(Materia.class, curso.getId());
+			Materia entidad = em.find(Materia.class, curso.getCodigo());
 
 			entidad.setNombre(curso.getNombre());
 			entidad.setCodigo(curso.getCodigo());
+			entidad.setCreditos(curso.getCreditos());
+			entidad.setDescripcion(curso.getDescripcion());
 
 			em.merge(entidad);
 			em.flush();
@@ -74,9 +78,10 @@ public class GestionCursoBean implements GestionCursoRemote, GestionCursoLocal {
 
 		MateriaBO bo = new MateriaBO();
 
-		bo.setId(idCurso);
 		bo.setCodigo(curso.getCodigo());
 		bo.setNombre(curso.getNombre());
+		bo.setDescripcion(curso.getDescripcion());
+		bo.setCreditos(curso.getCreditos());
 		bo.setContenidoObjGeneral(curso.getObjetivosGenerales().get(0)
 				.getContenido());
 
@@ -111,10 +116,10 @@ public class GestionCursoBean implements GestionCursoRemote, GestionCursoLocal {
 
 		for (Materia c : cursos) {
 			MateriaBO bo = new MateriaBO();
-
-			bo.setId(c.getCodigo());
 			bo.setCodigo(c.getCodigo());
 			bo.setNombre(c.getNombre());
+			bo.setDescripcion(c.getDescripcion());
+			bo.setCreditos(c.getCreditos());
 
 			cursosBO.add(bo);
 		}

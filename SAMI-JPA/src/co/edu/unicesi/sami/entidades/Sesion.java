@@ -23,7 +23,7 @@ public class Sesion implements Serializable {
 
 	//bi-directional many-to-one association to Unidad
     @ManyToOne
-	@JoinColumn(name="unidades_id")
+	@JoinColumn(name="FK_IdUnidad")
 	private Unidad unidade;
 
 	//bi-directional many-to-one association to TrabajoAsignado

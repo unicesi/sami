@@ -13,8 +13,7 @@ public class MaterialBO implements Serializable
     private String ano;
     private String ciudad;
     private String editorial;
-    private int idCurso;
-    private int codigoCurso;
+    private String codigoCurso;
     private String nombreCurso;    
     private List<Integer> recursos;    
 
@@ -86,12 +85,7 @@ public class MaterialBO implements Serializable
 		this.editorial = editorial;
 	}
 
-    public int getIdCurso( )
-    {
-        return idCurso;
-    }
-
-    public int getCodigoCurso( )
+    public String getCodigoCurso( )
     {
         return codigoCurso;
     }
@@ -111,12 +105,7 @@ public class MaterialBO implements Serializable
         this.id = id;
     }
 
-    public void setIdCurso( int idCurso )
-    {
-        this.idCurso = idCurso;
-    }
-
-    public void setCodigoCurso( int codigoCurso )
+    public void setCodigoCurso( String codigoCurso )
     {
         this.codigoCurso = codigoCurso;
     }

@@ -17,17 +17,21 @@ public class CompetenciaEspecificaPrograma implements Serializable {
 	@EmbeddedId
 	private CompetenciaEspecificaProgramaPK id;
 
+	private int puntaje;
+
 	//bi-directional many-to-one association to BloqueCompetenciaEspecifica
 	@OneToMany(mappedBy="competenciasespecificasPrograma")
 	private List<BloqueCompetenciaEspecifica> bloquesCompetenciasespecificas;
 
-	//bi-directional many-to-one association to Calificacion
-	@OneToMany(mappedBy="competenciasespecificasPrograma")
-	private List<Calificacion> calificaciones;
+	//bi-directional many-to-one association to CompetenciaEspecifica
+    @ManyToOne
+	@JoinColumn(name="FK_IdCompetenciaEspecifica")
+	private CompetenciaEspecifica competenciasespecifica;
 
-	//bi-directional many-to-one association to MateriaCompetenciaEspecifica
-	@OneToMany(mappedBy="competenciasespecificasPrograma")
-	private List<MateriaCompetenciaEspecifica> materiasCompetenciasespecificas;
+	//bi-directional many-to-one association to Programa
+    @ManyToOne
+	@JoinColumn(name="FK_CodigoPrograma")
+	private Programa programa;
 
 	//bi-directional many-to-one association to ObjetivoEspecificoCompetenciaEspecifica
 	@OneToMany(mappedBy="competenciasespecificasPrograma")
@@ -48,6 +52,14 @@ public class CompetenciaEspecificaPrograma implements Serializable {
 		this.id = id;
 	}
 	
+	public int getPuntaje() {
+		return this.puntaje;
+	}
+
+	public void setPuntaje(int puntaje) {
+		this.puntaje = puntaje;
+	}
+
 	public List<BloqueCompetenciaEspecifica> getBloquesCompetenciasespecificas() {
 		return this.bloquesCompetenciasespecificas;
 	}
@@ -56,20 +68,20 @@ public class CompetenciaEspecificaPrograma implements Serializable {
 		this.bloquesCompetenciasespecificas = bloquesCompetenciasespecificas;
 	}
 	
-	public List<Calificacion> getCalificaciones() {
-		return this.calificaciones;
+	public CompetenciaEspecifica getCompetenciasespecifica() {
+		return this.competenciasespecifica;
 	}
 
-	public void setCalificaciones(List<Calificacion> calificaciones) {
-		this.calificaciones = calificaciones;
+	public void setCompetenciasespecifica(CompetenciaEspecifica competenciasespecifica) {
+		this.competenciasespecifica = competenciasespecifica;
 	}
 	
-	public List<MateriaCompetenciaEspecifica> getMateriasCompetenciasespecificas() {
-		return this.materiasCompetenciasespecificas;
+	public Programa getPrograma() {
+		return this.programa;
 	}
 
-	public void setMateriasCompetenciasespecificas(List<MateriaCompetenciaEspecifica> materiasCompetenciasespecificas) {
-		this.materiasCompetenciasespecificas = materiasCompetenciasespecificas;
+	public void setPrograma(Programa programa) {
+		this.programa = programa;
 	}
 	
 	public List<ObjetivoEspecificoCompetenciaEspecifica> getObjetivosespecificosCompetenciasespecificas() {

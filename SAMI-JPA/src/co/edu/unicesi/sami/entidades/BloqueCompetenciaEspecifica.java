@@ -22,6 +22,8 @@ public class BloqueCompetenciaEspecifica implements Serializable {
 
 	private byte introduce;
 
+	private int puntaje;
+
 	//bi-directional many-to-one association to Bloque
     @ManyToOne
 	@JoinColumn(name="FK_IdBloque")
@@ -31,7 +33,7 @@ public class BloqueCompetenciaEspecifica implements Serializable {
     @ManyToOne
 	@JoinColumns({
 		@JoinColumn(name="FK_CodigoPrograma", referencedColumnName="FK_CodigoPrograma"),
-		@JoinColumn(name="FK_idCompetenciaEspecifica", referencedColumnName="FK_idCompetenciaEspecifica")
+		@JoinColumn(name="FK_idCompetenciaEspecifica", referencedColumnName="FK_IdCompetenciaEspecifica")
 		})
 	private CompetenciaEspecificaPrograma competenciasespecificasPrograma;
 
@@ -68,6 +70,14 @@ public class BloqueCompetenciaEspecifica implements Serializable {
 
 	public void setIntroduce(byte introduce) {
 		this.introduce = introduce;
+	}
+
+	public int getPuntaje() {
+		return this.puntaje;
+	}
+
+	public void setPuntaje(int puntaje) {
+		this.puntaje = puntaje;
 	}
 
 	public Bloque getBloque() {

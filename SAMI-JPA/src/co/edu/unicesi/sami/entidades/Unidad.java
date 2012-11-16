@@ -33,7 +33,7 @@ public class Unidad implements Serializable {
 
 	//bi-directional many-to-one association to Materia
     @ManyToOne
-	@JoinColumn(name="materias_codigo")
+	@JoinColumn(name="FK_CodigoMateria")
 	private Materia materia;
 
     public Unidad() {

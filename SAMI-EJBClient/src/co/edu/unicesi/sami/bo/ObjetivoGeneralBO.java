@@ -6,7 +6,6 @@ public class ObjetivoGeneralBO implements Serializable
 {
     private int id;
     private String contenido;
-    private int idCurso;
     private String codigoCurso;
     private String nombreCurso;
     
@@ -27,11 +26,6 @@ public class ObjetivoGeneralBO implements Serializable
         return contenido;
     }
 
-    public int getIdCurso( )
-    {
-        return idCurso;
-    }
-
     public String getCodigoCurso( )
     {
         return codigoCurso;
@@ -50,11 +44,6 @@ public class ObjetivoGeneralBO implements Serializable
     public void setContenido( String contenido )
     {
         this.contenido = contenido;
-    }
-
-    public void setIdCurso( int idCurso )
-    {
-        this.idCurso = idCurso;
     }
 
     public void setCodigoCurso( String codigoCurso )
