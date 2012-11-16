@@ -30,7 +30,7 @@ public interface CompetenciasServiceAsync
 
     public void agregarObjGeneral( ObjetivoGeneralBO objGeneral, AsyncCallback<Integer> callback );
     public void editarObjGeneral( ObjetivoGeneralBO objGeneral, AsyncCallback<Integer> callback );
-    public void buscarObjGeneral( int idCurso, AsyncCallback<ObjetivoGeneralBO> callback );
+    public void buscarObjGeneral( String codigoCurso, AsyncCallback<ObjetivoGeneralBO> callback );
 
     public void agregarObjTerminal( ObjetivoTerminalBO objTerminal, AsyncCallback<Integer> callback );
     public void editarObjTerminal( ObjetivoTerminalBO objTerminal, AsyncCallback<Integer> callback );

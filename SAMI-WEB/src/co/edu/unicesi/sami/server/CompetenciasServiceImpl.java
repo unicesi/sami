@@ -79,9 +79,9 @@ public class CompetenciasServiceImpl extends RemoteServiceServlet implements Com
     }
 
     @Override
-    public ObjetivoGeneralBO buscarObjGeneral( int idCurso )
+    public ObjetivoGeneralBO buscarObjGeneral( String codigoCurso )
     {
-        return competenciasRemote.buscarObjGeneral( idCurso );
+        return competenciasRemote.buscarObjGeneral( codigoCurso );
     }
 
     @Override

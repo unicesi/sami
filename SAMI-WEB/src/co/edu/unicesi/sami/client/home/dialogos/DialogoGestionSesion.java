@@ -216,8 +216,8 @@ public class DialogoGestionSesion extends Dialog {
 	}
 
 	public void cargarRecursos() {
-		int idCurso = Registry.get("idCurso");
-		listadosService.listarRecursosPorCurso(idCurso,
+		String codigoCurso = Registry.get("codigoCurso");
+		listadosService.listarRecursosPorCurso(codigoCurso,
 				new AsyncCallback<List<RecursoBO>>() {
 					@Override
 					public void onFailure(Throwable arg0) {

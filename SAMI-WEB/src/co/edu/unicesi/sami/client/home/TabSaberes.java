@@ -169,8 +169,8 @@ public class TabSaberes extends TabItem {
 
 	// nuevo
 	private void cargarUnidades() {
-		int idCurso = Registry.get("idCurso");
-		listadosService.listarUnidadesPorCurso(idCurso,
+		String codigoCurso = Registry.get("codigoCurso");
+		listadosService.listarUnidadesPorCurso(codigoCurso,
 				new AsyncCallback<List<UnidadBO>>() {
 					@Override
 					public void onSuccess(List<UnidadBO> result) {

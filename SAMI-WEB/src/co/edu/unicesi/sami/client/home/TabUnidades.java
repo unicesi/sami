@@ -205,8 +205,8 @@ public class TabUnidades extends TabItem {
 	}
 
 	private void cargarUnidades() {
-		int idCurso = Registry.get("idCurso");
-		listadosService.listarUnidadesPorCurso(idCurso,
+		String codigoCurso = Registry.get("codigoCurso");
+		listadosService.listarUnidadesPorCurso(codigoCurso,
 				new AsyncCallback<List<UnidadBO>>() {
 					@Override
 					public void onSuccess(List<UnidadBO> result) {
@@ -222,8 +222,8 @@ public class TabUnidades extends TabItem {
 	}
 
 	private void cargarObjetivosTerminales() {
-		int idCurso = Registry.get("idCurso");
-		listadosService.listarObjTerminalesCursoMenosUnidad(idCurso, idUnidad,
+		String codigoCurso = Registry.get("codigoCurso");
+		listadosService.listarObjTerminalesCursoMenosUnidad(codigoCurso, idUnidad,
 				new AsyncCallback<List<ObjetivoTerminalBO>>() {
 					@Override
 					public void onSuccess(List<ObjetivoTerminalBO> result) {
@@ -260,8 +260,8 @@ public class TabUnidades extends TabItem {
 		unidad.setNombre(nombre);
 		unidad.setContenido(contenido);
 		unidad.setNumero(numero);
-		int idCurso = Registry.get("idCurso");
-		unidad.setIdCurso(idCurso);
+		String codigoCurso = Registry.get("codigoCurso");
+		unidad.setCodigoCurso(codigoCurso);
 
 		competenciasService.agregarUnidad(unidad, new AsyncCallback<Integer>() {
 			@Override

@@ -205,8 +205,8 @@ public class TabRecursos extends TabItem
 
     private void cargarSaberes( )
     {
-        int idCurso = Registry.get( "idCurso" );
-        listadosService.listarSaberesPorCurso( idCurso, new AsyncCallback<List<SaberBO>>( )
+        String codigoCurso = Registry.get( "codigoCurso" );
+        listadosService.listarSaberesPorCurso( codigoCurso, new AsyncCallback<List<SaberBO>>( )
         {
             @Override
             public void onSuccess( List<SaberBO> result )
@@ -224,8 +224,8 @@ public class TabRecursos extends TabItem
 
     private void cargarMateriales( )
     {
-        int idCurso = Registry.get( "idCurso" );
-        listadosService.listarMaterialesPorCurso( idCurso, new AsyncCallback<List<MaterialBO>>( )
+        String codigoCurso = Registry.get( "codigoCurso" );
+        listadosService.listarMaterialesPorCurso( codigoCurso, new AsyncCallback<List<MaterialBO>>( )
         {
             @Override
             public void onSuccess( List<MaterialBO> result )

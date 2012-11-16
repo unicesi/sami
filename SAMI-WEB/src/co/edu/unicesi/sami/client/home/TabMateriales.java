@@ -147,8 +147,8 @@ public class TabMateriales extends TabItem
         m.setEditorial(editorial);
         m.setIdioma( idioma );
         m.setTitulo( titulo );
-        int idCurso = Registry.get( "idCurso" );
-        m.setIdCurso( idCurso );
+        String codigoCurso = Registry.get( "codigoCurso" );
+        m.setCodigoCurso(codigoCurso);
 
         planificadorService.agregarMaterial( m, new AsyncCallback<Integer>( )
         {
@@ -199,8 +199,8 @@ public class TabMateriales extends TabItem
          
     private void cargarMateriales( )
     {
-        int idCurso = Registry.get( "idCurso" );
-        listadosService.listarMaterialesPorCurso( idCurso, new AsyncCallback<List<MaterialBO>>( )
+        String codigoCurso = Registry.get( "codigoCurso" );
+        listadosService.listarMaterialesPorCurso( codigoCurso, new AsyncCallback<List<MaterialBO>>( )
         {
             @Override
             public void onSuccess( List<MaterialBO> result )

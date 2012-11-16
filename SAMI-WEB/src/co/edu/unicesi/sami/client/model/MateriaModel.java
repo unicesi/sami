@@ -7,58 +7,59 @@ import co.edu.unicesi.sami.bo.MateriaBO;
 
 import com.extjs.gxt.ui.client.data.BaseModel;
 
-public class MateriaModel extends BaseModel implements Serializable
-{
-    
-    public MateriaModel()
-    {
-        
-    }
-    
-    public MateriaModel(int id, String nombre, int codigo)
-    {
-        set( "id", id );
-        set("nombre", nombre);
-        set("codigo", codigo);
-    }
+public class MateriaModel extends BaseModel implements Serializable {
 
-    public int getId( )
-    {
-        return (Integer) get("id");
-    }
+	public MateriaModel() {
 
-    public int getCodigo( )
-    {
-        return (Integer) get("codigo");
-    }
+	}
 
-    public String getNombre( )
-    {
-        return (String) get( "nombre" );
-    }    
+	public MateriaModel(String nombre, String codigo, String descripcion,
+			int creditos) {
+		set("nombre", nombre);
+		set("codigo", codigo);
+		set("descripcion", descripcion);
+		set("creditos", creditos);
+	}
 
-    public void setId( int id )
-    {
-        set("id", id);
-    }
+	public String getCodigo() {
+		return (String) get("codigo");
+	}
 
-    public void setCodigo( int codigo )
-    {
-        set("codigo", codigo);
-    }
+	public String getNombre() {
+		return (String) get("nombre");
+	}
+	
+	public String getDescripcion() {
+		return (String) get("descripcion");
+	}
 
-    public void setNombre( String nombre )
-    {
-        set( "nombre", nombre );
-    }       
-    
-    public static MateriaModel toModelFromBO(MateriaBO bo)
-    {
-        MateriaModel cModel = new MateriaModel( );
-        cModel.setId( bo.getId( ));
-        cModel.setCodigo( bo.getCodigo( ) );
-        cModel.setNombre( bo.getNombre( ) );
-        
-        return cModel;
-    }
+	public int getCreditos() {
+		return (Integer) get("creditos");
+	}
+
+	public void setCodigo(String codigo) {
+		set("codigo", codigo);
+	}
+
+	public void setNombre(String nombre) {
+		set("nombre", nombre);
+	}
+
+	public void setDescripcion(String descripcion) {
+		set("descripcion", descripcion);
+	}
+
+	public void setCreditos(int creditos) {
+		set("creditos", creditos);
+	}
+
+	public static MateriaModel toModelFromBO(MateriaBO bo) {
+		MateriaModel cModel = new MateriaModel();
+		cModel.setCodigo(bo.getCodigo());
+		cModel.setNombre(bo.getNombre());
+		cModel.setCreditos(bo.getCreditos());
+		cModel.setDescripcion(bo.getDescripcion());
+
+		return cModel;
+	}
 }

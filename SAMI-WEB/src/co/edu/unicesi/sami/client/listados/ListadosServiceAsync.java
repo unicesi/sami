@@ -17,20 +17,20 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 
 public interface ListadosServiceAsync
 {
-    public void listarMaterialesPorCurso(int idCurso, AsyncCallback<List<MaterialBO>> callback);
-    public void listarMetasTerminalesPorCurso(int idCurso, AsyncCallback<List<MetaTerminalBO>> callback);
-    public void listarObjEspecificosPorCurso(int idCurso, AsyncCallback<List<ObjetivoEspecificoBO>> callback);
+    public void listarMaterialesPorCurso(String codigoCurso, AsyncCallback<List<MaterialBO>> callback);
+    public void listarMetasTerminalesPorCurso(String codigoCurso, AsyncCallback<List<MetaTerminalBO>> callback);
+    public void listarObjEspecificosPorCurso(String codigoCurso, AsyncCallback<List<ObjetivoEspecificoBO>> callback);
     public void listarObjEspecificosPorMetaTerminal(int idMetaTerminal, AsyncCallback<List<ObjetivoEspecificoBO>> callback);    
     public void listarObjEspecificosPorUnidad(int idUnidad, AsyncCallback<List<ObjetivoEspecificoBO>> callback);
-    public void listarObjTerminalesPorCurso(int idCurso, AsyncCallback<List<ObjetivoTerminalBO>> callback);
+    public void listarObjTerminalesPorCurso(String codigoCurso, AsyncCallback<List<ObjetivoTerminalBO>> callback);
     public void listarObjTerminalesPorUnidad(int idUnidad, AsyncCallback<List<ObjetivoTerminalBO>> callback);
-    public void listarObjTerminalesCursoMenosUnidad(int idCurso, int idUnidad, AsyncCallback<List<ObjetivoTerminalBO>> callback);
+    public void listarObjTerminalesCursoMenosUnidad(String codigoCurso, int idUnidad, AsyncCallback<List<ObjetivoTerminalBO>> callback);
     public void listarRecursosPorSaber(int idSaber, AsyncCallback<List<RecursoBO>> callback);
-    public void listarSaberesPorCurso(int idCurso, AsyncCallback<List<SaberBO>> callback);
+    public void listarSaberesPorCurso(String codigoCurso, AsyncCallback<List<SaberBO>> callback);
     public void listarSaberesPorObjetivoEspecifico(int idObjEspecifico, AsyncCallback<List<SaberBO>> callback);
-    public void listarSesionesPorUnidad(int idUnidad, AsyncCallback<List<SesionBO>> asyncCallback);
+    public void listarSesionesPorUnidad(int idUnidad, AsyncCallback<List<SesionBO>> callback);
     public void listarTrabajosAsignadosPorSesion(int idSesion, AsyncCallback<List<TrabajoAsignadoBO>> callback);
     public void listarRecursosAsignadosPorTrabajoAsignado(int idTrabajoAsignado, AsyncCallback<List<RecursoAsignadoBO>> callback);
-    public void listarUnidadesPorCurso(int idCurso, AsyncCallback<List<UnidadBO>> callback);
-    public void listarRecursosPorCurso(int idCurso, AsyncCallback<List<RecursoBO>> callback);
+    public void listarUnidadesPorCurso(String codigoCurso, AsyncCallback<List<UnidadBO>> callback);
+    public void listarRecursosPorCurso(String codigoCurso, AsyncCallback<List<RecursoBO>> callback);
 }

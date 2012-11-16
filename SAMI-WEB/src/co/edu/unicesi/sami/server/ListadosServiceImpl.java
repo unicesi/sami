@@ -41,21 +41,21 @@ public class ListadosServiceImpl extends RemoteServiceServlet implements Listado
     }
     
     @Override
-    public List<MaterialBO> listarMaterialesPorCurso( int idCurso )
+    public List<MaterialBO> listarMaterialesPorCurso( String codigoCurso )
     {
-        return listadosService.listarMaterialesPorCurso( idCurso );
+        return listadosService.listarMaterialesPorCurso( codigoCurso );
     }
 
     @Override
-    public List<MetaTerminalBO> listarMetasTerminalesPorCurso( int idCurso )
+    public List<MetaTerminalBO> listarMetasTerminalesPorCurso( String codigoCurso )
     {
-        return listadosService.listarMetasTerminalesPorCurso( idCurso );
+        return listadosService.listarMetasTerminalesPorCurso( codigoCurso );
     }
 
     @Override
-    public List<ObjetivoEspecificoBO> listarObjEspecificosPorCurso( int idCurso )
+    public List<ObjetivoEspecificoBO> listarObjEspecificosPorCurso( String codigoCurso )
     {
-        return listadosService.listarObjEspecificosPorCurso( idCurso );
+        return listadosService.listarObjEspecificosPorCurso( codigoCurso );
     }
 
     @Override
@@ -73,9 +73,9 @@ public class ListadosServiceImpl extends RemoteServiceServlet implements Listado
     
 
     @Override
-    public List<ObjetivoTerminalBO> listarObjTerminalesPorCurso( int idCurso )
+    public List<ObjetivoTerminalBO> listarObjTerminalesPorCurso( String codigoCurso )
     {
-        return listadosService.listarObjTerminalesPorCurso( idCurso );
+        return listadosService.listarObjTerminalesPorCurso( codigoCurso );
     }
 
     @Override
@@ -85,9 +85,9 @@ public class ListadosServiceImpl extends RemoteServiceServlet implements Listado
     }
 
     @Override
-    public List<SaberBO> listarSaberesPorCurso(int idCurso)
+    public List<SaberBO> listarSaberesPorCurso(String codigoCurso)
     {
-        return listadosService.listarSaberesPorCurso( idCurso );
+        return listadosService.listarSaberesPorCurso( codigoCurso );
     }
     
     @Override
@@ -115,9 +115,9 @@ public class ListadosServiceImpl extends RemoteServiceServlet implements Listado
     }
 
     @Override
-    public List<UnidadBO> listarUnidadesPorCurso( int idCurso )
+    public List<UnidadBO> listarUnidadesPorCurso( String codigoCurso )
     {
-        return listadosService.listarUnidadesPorCurso( idCurso );
+        return listadosService.listarUnidadesPorCurso( codigoCurso );
     }
 
 	@Override
@@ -127,14 +127,14 @@ public class ListadosServiceImpl extends RemoteServiceServlet implements Listado
 
 	@Override
 	public List<ObjetivoTerminalBO> listarObjTerminalesCursoMenosUnidad(
-			int idCurso, int idUnidad) {
+			String idCurso, int idUnidad) {
 		return listadosService.listarObjTerminalesCursoMenosUnidad(idCurso, idUnidad);
 	}
 
 	@Override
-	public List<RecursoBO> listarRecursosPorCurso(int idCurso) {
+	public List<RecursoBO> listarRecursosPorCurso(String codigoCurso) {
 		// TODO Auto-generated method stub
-		return listadosService.listarRecursosPorCurso(idCurso);
+		return listadosService.listarRecursosPorCurso(codigoCurso);
 	}
- 
+
 }

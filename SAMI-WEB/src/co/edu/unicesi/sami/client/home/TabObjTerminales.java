@@ -181,8 +181,8 @@ public class TabObjTerminales extends TabItem {
 		ObjetivoTerminalBO objTerminal = new ObjetivoTerminalBO();
 		objTerminal.setNombre(nombre);
 		objTerminal.setContenido(contenido);
-		int idCurso = Registry.get("idCurso");
-		objTerminal.setIdCurso(idCurso);
+		String codigoCurso = Registry.get("codigoCurso");
+		objTerminal.setCodigoCurso(codigoCurso);
 
 		competenciasService.agregarObjTerminal(objTerminal,
 				new AsyncCallback<Integer>() {
@@ -221,8 +221,8 @@ public class TabObjTerminales extends TabItem {
 	}
 
 	private void cargarObjGeneral() {
-		int idCurso = Registry.get("idCurso");
-		competenciasService.buscarObjGeneral(idCurso,
+		String codigoCurso = Registry.get("codigoCurso");
+		competenciasService.buscarObjGeneral(codigoCurso,
 				new AsyncCallback<ObjetivoGeneralBO>() {
 					@Override
 					public void onSuccess(ObjetivoGeneralBO objGeneral) {
@@ -243,8 +243,8 @@ public class TabObjTerminales extends TabItem {
 	}
 
 	private void cargarObjTerminales() {
-		int idCurso = Registry.get("idCurso");
-		listadosService.listarObjTerminalesPorCurso(idCurso,
+		String codigoCurso = Registry.get("codigoCurso");
+		listadosService.listarObjTerminalesPorCurso(codigoCurso,
 				new AsyncCallback<List<ObjetivoTerminalBO>>() {
 					@Override
 					public void onSuccess(List<ObjetivoTerminalBO> result) {

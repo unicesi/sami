@@ -33,7 +33,7 @@ public interface CompetenciasService extends RemoteService
 
     public int agregarObjGeneral( ObjetivoGeneralBO objGeneral );
     public int editarObjGeneral( ObjetivoGeneralBO objGeneral );
-    public ObjetivoGeneralBO buscarObjGeneral( int idCurso );
+    public ObjetivoGeneralBO buscarObjGeneral( String codigoCurso );
 
     public int agregarObjTerminal( ObjetivoTerminalBO objTerminal );
     public int editarObjTerminal( ObjetivoTerminalBO objTerminal );

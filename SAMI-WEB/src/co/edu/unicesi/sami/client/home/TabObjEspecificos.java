@@ -270,8 +270,8 @@ public class TabObjEspecificos extends TabItem
     }
     private void cargarMetasTerminales( )
     {
-        int idCurso = Registry.get( "idCurso" );
-        listadosService.listarMetasTerminalesPorCurso( idCurso, new AsyncCallback<List<MetaTerminalBO>>( )
+        String codigoCurso = Registry.get( "codigoCurso" );
+        listadosService.listarMetasTerminalesPorCurso( codigoCurso, new AsyncCallback<List<MetaTerminalBO>>( )
         {
             @Override
             public void onSuccess( List<MetaTerminalBO> result )
@@ -289,8 +289,8 @@ public class TabObjEspecificos extends TabItem
 
     private void cargarObjetivosEspecificos( )
     {
-        int idCurso = Registry.get( "idCurso" );
-        listadosService.listarObjEspecificosPorCurso( idCurso, new AsyncCallback<List<ObjetivoEspecificoBO>>( )
+        String codigoCurso = Registry.get( "codigoCurso" );
+        listadosService.listarObjEspecificosPorCurso( codigoCurso, new AsyncCallback<List<ObjetivoEspecificoBO>>( )
         {
             @Override
             public void onSuccess( List<ObjetivoEspecificoBO> result )

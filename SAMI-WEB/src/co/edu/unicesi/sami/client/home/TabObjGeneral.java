@@ -108,7 +108,7 @@ public class TabObjGeneral extends TabItem
     {
         ObjetivoGeneralBO objGeneral = new ObjetivoGeneralBO( );
         objGeneral.setContenido( txtObjGeneral.getValue( ) );
-        objGeneral.setIdCurso( ( Integer )Registry.get( "idCurso" ) );
+        objGeneral.setCodigoCurso((String)Registry.get( "codigoCurso" ) );
 
         competenciasService.agregarObjGeneral( objGeneral, new AsyncCallback<Integer>( )
         {
@@ -132,7 +132,7 @@ public class TabObjGeneral extends TabItem
         ObjetivoGeneralBO objGeneral = new ObjetivoGeneralBO( );
         objGeneral.setId( idObjGeneral );
         objGeneral.setContenido( txtObjGeneral.getValue( ) );
-        objGeneral.setIdCurso( ( Integer )Registry.get( "idCurso" ) );
+        objGeneral.setCodigoCurso( ( String )Registry.get( "codigoCurso" ) );
 
         competenciasService.editarObjGeneral( objGeneral, new AsyncCallback<Integer>( )
         {
@@ -152,10 +152,10 @@ public class TabObjGeneral extends TabItem
 
     public void asignarObjGeneral( )
     {
-        if( Registry.get( "idCurso" ) != null )
+        if( Registry.get( "codigoCurso" ) != null )
         {
-            int idCurso = Registry.get( "idCurso" );
-            competenciasService.buscarObjGeneral( idCurso, new AsyncCallback<ObjetivoGeneralBO>( )
+            String codigoCurso = Registry.get( "codigoCurso" );
+            competenciasService.buscarObjGeneral( codigoCurso, new AsyncCallback<ObjetivoGeneralBO>( )
             {
                 @Override
                 public void onSuccess( ObjetivoGeneralBO objGeneral )

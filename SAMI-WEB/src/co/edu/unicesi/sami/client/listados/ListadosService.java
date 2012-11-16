@@ -20,20 +20,20 @@ import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 @RemoteServiceRelativePath("ListadosService")
 public interface ListadosService extends RemoteService
 {
-    public List<MaterialBO> listarMaterialesPorCurso(int idCurso);
-    public List<MetaTerminalBO> listarMetasTerminalesPorCurso(int idCurso);
-    public List<ObjetivoEspecificoBO> listarObjEspecificosPorCurso(int idCurso);
+    public List<MaterialBO> listarMaterialesPorCurso(String codigoCurso);
+    public List<MetaTerminalBO> listarMetasTerminalesPorCurso(String codigoCurso);
+    public List<ObjetivoEspecificoBO> listarObjEspecificosPorCurso(String codigoCurso);
     public List<ObjetivoEspecificoBO> listarObjEspecificosPorMetaTerminal(int idMetaTerminal);    
     public List<ObjetivoEspecificoBO> listarObjEspecificosPorUnidad(int idUnidad);
-    public List<ObjetivoTerminalBO> listarObjTerminalesPorCurso(int idCurso);
+    public List<ObjetivoTerminalBO> listarObjTerminalesPorCurso(String codigoCurso);
     public List<ObjetivoTerminalBO> listarObjTerminalesPorUnidad(int idUnidad);
-    public List<ObjetivoTerminalBO> listarObjTerminalesCursoMenosUnidad(int idCurso, int idUnidad);
+    public List<ObjetivoTerminalBO> listarObjTerminalesCursoMenosUnidad(String codigoCurso, int idUnidad);
     public List<RecursoBO> listarRecursosPorSaber(int idSaber);
-    public List<SaberBO> listarSaberesPorCurso(int idCurso);
+    public List<SaberBO> listarSaberesPorCurso(String codigoCurso);
     public List<SaberBO> listarSaberesPorObjetivoEspecifico(int idObjEspecifico);
     public List<SesionBO> listarSesionesPorUnidad(int idUnidad);
     public List<TrabajoAsignadoBO> listarTrabajosAsignadosPorSesion(int idSesion);
     public List<RecursoAsignadoBO> listarRecursosAsignadosPorTrabajoAsignado(int idTrabajoAsignado);
-    public List<UnidadBO> listarUnidadesPorCurso(int idCurso);
-    public List<RecursoBO> listarRecursosPorCurso(int idCurso);
+    public List<UnidadBO> listarUnidadesPorCurso(String codigoCurso);
+    public List<RecursoBO> listarRecursosPorCurso(String codigoCurso);
 }

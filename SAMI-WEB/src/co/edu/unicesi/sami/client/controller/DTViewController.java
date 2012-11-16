@@ -179,7 +179,7 @@ public class DTViewController extends Controller {
 			tabSaberes.actualizarTablaSaberes(sModel);
 		} else if (event.getType().equals(DTEvent.SELECCIONAR_CURSO)) {
 			MateriaModel cursoModel = (MateriaModel) event.getData();
-			Registry.register("idCurso", cursoModel.getId());
+			Registry.register("codigoCurso", cursoModel.getCodigo());
 
 			TabPanel tabs = Registry.get("tabs");
 			tabs.enable();
