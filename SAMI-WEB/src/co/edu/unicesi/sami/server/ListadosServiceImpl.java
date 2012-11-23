@@ -141,7 +141,7 @@ public class ListadosServiceImpl extends RemoteServiceServlet implements Listado
 	@Override
 	public List<CompetenciaBO> listarCompetencias() {
 		// TODO Auto-generated method stub
-		return null;
+		return listadosService.listarCompetencias();
 	}
 
 }

@@ -14,7 +14,7 @@
  *******************************************************************************/
 package co.edu.unicesi.sami.client.competencias;
 
-//import co.edu.unicesi.sami.bo.CEOTBO;
+import co.edu.unicesi.sami.bo.CEOTBO;
 import co.edu.unicesi.sami.bo.MetaTerminalBO;
 import co.edu.unicesi.sami.bo.ObjetivoEspecificoBO;
 import co.edu.unicesi.sami.bo.ObjetivoGeneralBO;
@@ -45,6 +45,6 @@ public interface CompetenciasServiceAsync
     public void eliminarMetaTerminal( MetaTerminalBO metaTerminal, AsyncCallback<Integer> callback );
     public void buscarMetaTerminal( int idMetaTerminal, AsyncCallback<MetaTerminalBO> callback );
     
-//    public int agregarCEOT(CEOTBO ceot);
+    public void agregarCEOT(CEOTBO ceot, AsyncCallback<Integer> callback);
 
 }

@@ -18,6 +18,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
 //import co.edu.unicesi.sami.bo.CEOTBO;
+import co.edu.unicesi.sami.bo.CEOTBO;
 import co.edu.unicesi.sami.bo.MetaTerminalBO;
 import co.edu.unicesi.sami.bo.ObjetivoEspecificoBO;
 import co.edu.unicesi.sami.bo.ObjetivoGeneralBO;
@@ -138,9 +139,9 @@ public class CompetenciasServiceImpl extends RemoteServiceServlet implements Com
     {
         return competenciasRemote.buscarMetaTerminal( idMetaTerminal );
     }
-//	@Override
-//	public int agregarCEOT(CEOTBO ceot) {
-//		// TODO Auto-generated method stub
-//		return competenciasRemote.agregarCEOT(ceot);
-//	}
+	@Override
+	public int agregarCEOT(CEOTBO ceot) {
+		// TODO Auto-generated method stub
+		return competenciasRemote.agregarCEOT(ceot);
+	}
 }
