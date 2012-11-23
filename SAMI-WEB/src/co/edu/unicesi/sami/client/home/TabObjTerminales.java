@@ -3,7 +3,7 @@ package co.edu.unicesi.sami.client.home;
 import java.util.ArrayList;
 import java.util.List;
 
-//import co.edu.unicesi.sami.bo.CEOTBO;
+import co.edu.unicesi.sami.bo.CEOTBO;
 import co.edu.unicesi.sami.bo.CompetenciaBO;
 import co.edu.unicesi.sami.bo.MetaTerminalBO;
 import co.edu.unicesi.sami.bo.ObjetivoGeneralBO;
@@ -14,7 +14,7 @@ import co.edu.unicesi.sami.client.competencias.CompetenciasService;
 import co.edu.unicesi.sami.client.competencias.CompetenciasServiceAsync;
 import co.edu.unicesi.sami.client.controller.DTEvent;
 import co.edu.unicesi.sami.client.home.dialogos.DialogoAgregarObjTerminal;
-import co.edu.unicesi.sami.client.home.dialogos.DialogoAsociarCompetencia;
+import co.edu.unicesi.sami.client.home.dialogos.DialogoAsociarCompetenciaOT;
 import co.edu.unicesi.sami.client.home.dialogos.DialogoEditarObjTerminal;
 import co.edu.unicesi.sami.client.listados.ListadosService;
 import co.edu.unicesi.sami.client.listados.ListadosServiceAsync;
@@ -67,7 +67,7 @@ public class TabObjTerminales extends TabItem {
 
 	private DialogoAgregarObjTerminal dialogoAgregarObjTerminal;
 	private DialogoEditarObjTerminal dialogoEditarObjTerminal;
-	private DialogoAsociarCompetencia dialogoAsociarCompetencia;
+	private DialogoAsociarCompetenciaOT dialogoAsociarCompetenciaOT;
 
 	private Text labObjGeneral;
 	private TextArea txtObjGeneral;
@@ -139,12 +139,14 @@ public class TabObjTerminales extends TabItem {
 		eventoAgregarObjTerminal();
 		eventoEditarObjTerminal();
 		eventoAsociarCompetencia();
+		eventoSeleccionarCompetencia();
+		eventoSeleccionarObjetivoTerminal();
 	}
 
 	public void inicializarDialogos() {
 		dialogoAgregarObjTerminal = new DialogoAgregarObjTerminal(this);
 		dialogoEditarObjTerminal = new DialogoEditarObjTerminal(this);
-		dialogoAsociarCompetencia=new DialogoAsociarCompetencia(this);
+		dialogoAsociarCompetenciaOT=new DialogoAsociarCompetenciaOT(this);
 	}
 
 	private void eventoCargarTab() {
@@ -184,7 +186,7 @@ public class TabObjTerminales extends TabItem {
 		btnAsociarCompetencia.addSelectionListener(new SelectionListener<ButtonEvent>() {
 			@Override
 			public void componentSelected(ButtonEvent ce) {
-				dialogoAsociarCompetencia.show();
+				dialogoAsociarCompetenciaOT.show();
 			}
 		});
 	}
@@ -230,47 +232,47 @@ public class TabObjTerminales extends TabItem {
 					}
 				});
 	}
-//	private void asociarCompetencia(String introduce,String enseña,String aplica) {
-//			CEOTBO ceot = new CEOTBO();
-//			ceot.setIdObjTerminal(idObjTerminal);
-//			ceot.setId(idCompetencia);
-//			ceot.setIntroduce(introduce);
-//			ceot.setEnseña(enseña);
-//			ceot.setAplica(aplica);
-//			competenciasService.agregarCEOT(ceot,
-//					new AsyncCallback<Integer>() {
-//						@Override
-//						public void onSuccess(Integer result) {
-//							//cargar
-//						}
-//
-//						@Override
-//						public void onFailure(Throwable caught) {
-//							Info.display("Error", Mensajero.ON_FAILURE);
-//						}
-//					});
-//	}
-//	
-//	private void eventoSeleccionarObjetivoTerminal( )
-//    {
-//        gridObjTerminales.addListener( Events.OnClick, new Listener<GridEvent<ObjetivoTerminalModel>>( )
-//        {
-//            public void handleEvent( GridEvent<ObjetivoTerminalModel> be )
-//            {
-//                ObjetivoTerminalModel model = be.getGrid( ).getSelectionModel( ).getSelectedItem( );
-//                idObjTerminal = model.getId( );
-//           }
-//        } );
-//    }
-//	
-//	private void eventoSeleccionarCompetencia(){
-//		gridCompetencias.addListener(Events.OnClick,new Listener<GridEvent<CompetenciaModel>>(){
-//			public void handleEvent(GridEvent<CompetenciaModel> be){
-//				CompetenciaModel model=be.getGrid().getSelectionModel().getSelectedItem();
-//				idCompetencia=model.getId();
-//			}
-//		});
-//	}
+	public void asociarCompetencia(String introduce,String ensena,String aplica) {
+			CEOTBO ceot = new CEOTBO();
+			ceot.setIdObjTerminal(idObjTerminal);
+			ceot.setId(idCompetencia);
+			ceot.setIntroduce(introduce);
+			ceot.setEnsena(ensena);
+			ceot.setAplica(aplica);
+			competenciasService.agregarCEOT(ceot,
+					new AsyncCallback<Integer>() {
+						@Override
+						public void onSuccess(Integer result) {
+							Info.display("Éxito","Asociado correctamente");
+						}
+
+						@Override
+						public void onFailure(Throwable caught) {
+							Info.display("Error", caught.getMessage());
+						}
+					});
+	}
+	
+	private void eventoSeleccionarObjetivoTerminal( )
+    {
+        gridObjTerminales.addListener( Events.OnClick, new Listener<GridEvent<ObjetivoTerminalModel>>( )
+        {
+            public void handleEvent( GridEvent<ObjetivoTerminalModel> be )
+            {
+                ObjetivoTerminalModel model = be.getGrid( ).getSelectionModel( ).getSelectedItem( );
+                idObjTerminal = model.getId( );
+           }
+        } );
+    }
+	
+	private void eventoSeleccionarCompetencia(){
+		gridCompetencias.addListener(Events.OnClick,new Listener<GridEvent<CompetenciaModel>>(){
+			public void handleEvent(GridEvent<CompetenciaModel> be){
+				CompetenciaModel model=be.getGrid().getSelectionModel().getSelectedItem();
+				idCompetencia=model.getId();
+			}
+		});
+	}
 
 	private void cargarObjGeneral() {
 		String codigoCurso = Registry.get("codigoCurso");

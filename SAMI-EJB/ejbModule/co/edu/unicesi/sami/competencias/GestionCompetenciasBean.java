@@ -381,13 +381,25 @@ public class GestionCompetenciasBean implements GestionCompetenciasRemote,
 	@Override
 	public int agregarCEOT(CEOTBO ceot) {
 		ObjetivoTerminalCompetenciaEspecifica entidad = new ObjetivoTerminalCompetenciaEspecifica();
-		int resp = -1;
+		int resp = 0;
 		try {
 			ObjetivoTerminal ot = em.find(ObjetivoTerminal.class, ceot.getIdObjTerminal());
 
+			for (int i = 0; i < ot.getObjetivosterminalesCompetenciasespecificas().size(); i++) {
+				
+				ObjetivoTerminalCompetenciaEspecifica compAux = ot.getObjetivosterminalesCompetenciasespecificas().get(i);
+				
+				if(compAux.getIntroduce().equals(ceot.getIntroduce()))
+					resp = -1;
+			}
+			
+			if(resp != -1)
+			{
 			entidad.setObjetivosTerminale(ot);
 			ObjetivoTerminalCompetenciaEspecificaPK otcepk=new ObjetivoTerminalCompetenciaEspecificaPK();
 			otcepk.setFK_IdCompetenciaEspecifica(ceot.getId());
+			otcepk.setFK_IdObjetivoTerminal(ceot.getIdObjTerminal());
+			otcepk.setFK_CodigoPrograma("01");
 			entidad.setId(otcepk);
 			entidad.setIntroduce(ceot.getIntroduce());
 			entidad.setEnseña(ceot.getEnsena());
@@ -396,6 +408,7 @@ public class GestionCompetenciasBean implements GestionCompetenciasRemote,
 			em.persist(entidad);
 			em.flush();
 			resp = 0;
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

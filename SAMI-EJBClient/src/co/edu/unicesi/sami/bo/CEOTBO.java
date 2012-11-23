@@ -58,6 +58,7 @@ public class CEOTBO implements Serializable{
 	public void setAplica(String aplica) {
 		this.aplica = aplica;
 	}
+
 	
 
 }

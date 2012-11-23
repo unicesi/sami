@@ -42,7 +42,8 @@ import co.edu.unicesi.sami.client.competencias.CompetenciasService;
 import co.edu.unicesi.sami.client.competencias.CompetenciasServiceAsync;
 import co.edu.unicesi.sami.client.controller.DTEvent;
 import co.edu.unicesi.sami.client.home.dialogos.DialogoAgregarObjEspecifico;
-import co.edu.unicesi.sami.client.home.dialogos.DialogoAsociarCompetencia;
+import co.edu.unicesi.sami.client.home.dialogos.DialogoAsociarCompetenciaOE;
+import co.edu.unicesi.sami.client.home.dialogos.DialogoAsociarCompetenciaOT;
 import co.edu.unicesi.sami.client.home.dialogos.DialogoEditarObjEspecifico;
 import co.edu.unicesi.sami.client.listados.ListadosService;
 import co.edu.unicesi.sami.client.listados.ListadosServiceAsync;
@@ -61,7 +62,7 @@ public class TabObjEspecificos extends TabItem
 
     private DialogoAgregarObjEspecifico dialogoAgregarObjEspecifico;
     private DialogoEditarObjEspecifico dialogoEditarObjEspecifico;
-    private DialogoAsociarCompetencia dialogoAsociarCompetencia;
+    private DialogoAsociarCompetenciaOE dialogoAsociarCompetenciaOE;
 
     private int idMetaTerminal;
     private int idObjEspecifico;
@@ -146,7 +147,7 @@ public class TabObjEspecificos extends TabItem
     {
         dialogoAgregarObjEspecifico = new DialogoAgregarObjEspecifico( this );
         dialogoEditarObjEspecifico = new DialogoEditarObjEspecifico( this );
-        dialogoAsociarCompetencia = new DialogoAsociarCompetencia( this );
+        dialogoAsociarCompetenciaOE = new DialogoAsociarCompetenciaOE( this );
     }
 
     private void eventoCargarTab( )
@@ -215,7 +216,7 @@ public class TabObjEspecificos extends TabItem
 		btnAsociarCompetencia.addSelectionListener(new SelectionListener<ButtonEvent>() {
 			@Override
 			public void componentSelected(ButtonEvent ce) {
-				dialogoAsociarCompetencia.show();
+				dialogoAsociarCompetenciaOE.show();
 			}
 		});
 	}
