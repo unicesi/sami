@@ -34,6 +34,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import co.edu.unicesi.sami.bo.CompetenciaBO;
 import co.edu.unicesi.sami.bo.MetaTerminalBO;
 import co.edu.unicesi.sami.bo.ObjetivoEspecificoBO;
 import co.edu.unicesi.sami.client.home.Mensajero;
@@ -128,7 +129,7 @@ public class TabObjEspecificos extends TabItem
         container.add( btnAgregar, new AbsoluteData( 275, 510 ) );
         
         btnAsociarCompetencia = new Button("Asociar");
-        container.add(btnAsociarCompetencia,new AbsoluteData(475,510));
+        container.add(btnAsociarCompetencia,new AbsoluteData(575,510));
 
         add( container );
 
@@ -138,12 +139,14 @@ public class TabObjEspecificos extends TabItem
         eventoSeleccionarMetaTerminal( );
         eventoAgregarObjEspecifico( );
         eventoEditarObjEspecifico( );
+        eventoAsociarCompetencia( );
     }
 
     private void inicializarDialogos( )
     {
         dialogoAgregarObjEspecifico = new DialogoAgregarObjEspecifico( this );
         dialogoEditarObjEspecifico = new DialogoEditarObjEspecifico( this );
+        dialogoAsociarCompetencia = new DialogoAsociarCompetencia( this );
     }
 
     private void eventoCargarTab( )
@@ -158,6 +161,7 @@ public class TabObjEspecificos extends TabItem
                 
                 cargarMetasTerminales( );
                 cargarObjetivosEspecificos( );
+                cargarCompetencias();
             }
         } );
     }
@@ -325,6 +329,20 @@ public class TabObjEspecificos extends TabItem
             }
         } );
     }
+    private void cargarCompetencias(){
+		listadosService.listarCompetencias(new AsyncCallback<List<CompetenciaBO>>(){
+			public void onSuccess(List<CompetenciaBO> result){
+				Dispatcher.forwardEvent(DTEvent.LISTAR_COMPETENCIAS,result);
+			}
+
+			@Override
+			public void onFailure(Throwable caught) {
+				// TODO Auto-generated method stub
+				Info.display("Error",Mensajero.ON_FAILURE);
+				
+			}
+		});
+	}
 
     public void actualizarTablaMetasTerminales( ListStore<MetaTerminalModel> metasTerminales )
     {
@@ -335,6 +353,10 @@ public class TabObjEspecificos extends TabItem
     {
         gridObjEspecificos.reconfigure( objEspecificos, getColumnModelObjEspecificos( ) );
     }
+    
+    public void actualizarCompetencias(ListStore<CompetenciaModel> competencias){
+		gridCompetencias.reconfigure(competencias, getColumnCompetenciaModel());
+	}
 
     private ColumnModel getColumnModelMetasTerminales( )
     {

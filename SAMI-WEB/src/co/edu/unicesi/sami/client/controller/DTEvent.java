@@ -27,6 +27,7 @@ public class DTEvent
 	public static final EventType LISTAR_RECURSOS_DIALOGO_AGREGAR_SESION = new EventType();
     public static final EventType LISTAR_TRABAJOS_DIALOGO_GESTION_SESION = new EventType();
     public static final EventType  LISTAR_SESIONES_DIALOGO_GESTION_SESION= new EventType();
+    public static final EventType LISTAR_COMPETENCIAS= new EventType();
     public static AppEvent getAppEvent(EventType ev)
     {
         return new AppEvent(ev);

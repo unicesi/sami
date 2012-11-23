@@ -9,6 +9,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import co.edu.unicesi.sami.bo.CEOTBO;
 import co.edu.unicesi.sami.bo.MetaTerminalBO;
 import co.edu.unicesi.sami.bo.ObjetivoEspecificoBO;
 import co.edu.unicesi.sami.bo.ObjetivoGeneralBO;
@@ -19,6 +20,8 @@ import co.edu.unicesi.sami.entidades.MetaTerminal;
 import co.edu.unicesi.sami.entidades.ObjetivoEspecifico;
 import co.edu.unicesi.sami.entidades.ObjetivoGeneral;
 import co.edu.unicesi.sami.entidades.ObjetivoTerminal;
+import co.edu.unicesi.sami.entidades.ObjetivoTerminalCompetenciaEspecifica;
+import co.edu.unicesi.sami.entidades.ObjetivoTerminalCompetenciaEspecificaPK;
 import co.edu.unicesi.sami.entidades.Saber;
 import co.edu.unicesi.sami.entidades.Sesion;
 import co.edu.unicesi.sami.entidades.Unidad;
@@ -372,6 +375,31 @@ public class GestionCompetenciasBean implements GestionCompetenciasRemote,
 		bo.setObjEspecificos(objEspecificos);
 
 		return bo;
+	}
+	
+	@Override
+	public int agregarCEOT(CEOTBO ceot) {
+		ObjetivoTerminalCompetenciaEspecifica entidad = new ObjetivoTerminalCompetenciaEspecifica();
+		int resp = -1;
+		try {
+			ObjetivoTerminal ot = em.find(ObjetivoTerminal.class, ceot.getIdObjTerminal());
+
+			entidad.setObjetivosTerminale(ot);
+			ObjetivoTerminalCompetenciaEspecificaPK otcepk=new ObjetivoTerminalCompetenciaEspecificaPK();
+			otcepk.setFK_IdCompetenciaEspecifica(ceot.getId());
+			entidad.setId(otcepk);
+			entidad.setIntroduce(ceot.getIntroduce());
+			entidad.setEnseña(ceot.getEnseña());
+			entidad.setAplica(ceot.getAplica());
+
+			em.persist(entidad);
+			em.flush();
+			resp = 0;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return resp;
 	}
 
 }

@@ -2,6 +2,7 @@ package co.edu.unicesi.sami.client.listados;
 
 import java.util.List;
 
+import co.edu.unicesi.sami.bo.CompetenciaBO;
 import co.edu.unicesi.sami.bo.MaterialBO;
 import co.edu.unicesi.sami.bo.MetaTerminalBO;
 import co.edu.unicesi.sami.bo.ObjetivoEspecificoBO;
@@ -33,4 +34,5 @@ public interface ListadosServiceAsync
     public void listarRecursosAsignadosPorTrabajoAsignado(int idTrabajoAsignado, AsyncCallback<List<RecursoAsignadoBO>> callback);
     public void listarUnidadesPorCurso(String codigoCurso, AsyncCallback<List<UnidadBO>> callback);
     public void listarRecursosPorCurso(String codigoCurso, AsyncCallback<List<RecursoBO>> callback);
+    public void listarCompetencias(AsyncCallback<List<CompetenciaBO>> callback);
 }

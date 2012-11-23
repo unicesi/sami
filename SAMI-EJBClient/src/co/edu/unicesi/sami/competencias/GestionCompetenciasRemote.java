@@ -2,6 +2,7 @@ package co.edu.unicesi.sami.competencias;
 
 import javax.ejb.Remote;
 
+import co.edu.unicesi.sami.bo.CEOTBO;
 import co.edu.unicesi.sami.bo.MetaTerminalBO;
 import co.edu.unicesi.sami.bo.ObjetivoEspecificoBO;
 import co.edu.unicesi.sami.bo.ObjetivoGeneralBO;
@@ -28,5 +29,7 @@ public interface GestionCompetenciasRemote {
     
     public int agregarMetaTerminal(MetaTerminalBO metaTerminal);
     public int eliminarMetaTerminal(MetaTerminalBO metaTerminal);
-    public MetaTerminalBO buscarMetaTerminal(int idMetaTerminal);   
+    public MetaTerminalBO buscarMetaTerminal(int idMetaTerminal); 
+    
+    public int agregarCEOT(CEOTBO metaTerminal);
 }

@@ -3,13 +3,14 @@ package co.edu.unicesi.sami.client.model;
 import java.io.Serializable;
 
 import co.edu.unicesi.sami.bo.CompetenciaBO;
-import co.edu.unicesi.sami.bo.ObjetivoTerminalBO;
 
 import com.extjs.gxt.ui.client.data.BaseModel;
 
 public class CompetenciaModel extends BaseModel implements Serializable
 {   
-    public CompetenciaModel( )
+	private static final long serialVersionUID = 1L;
+
+	public CompetenciaModel( )
     {
         
     }
@@ -54,7 +55,9 @@ public class CompetenciaModel extends BaseModel implements Serializable
     public static CompetenciaModel toModelFromBO(CompetenciaBO bo)
     {
         CompetenciaModel cModel = new CompetenciaModel( );
-           
+        cModel.setId(bo.getId());
+        cModel.setNombre(bo.getNombre());
+        cModel.setDescripcion(bo.getDescripcion());
         return cModel;
     }
 }

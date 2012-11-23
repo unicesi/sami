@@ -8,6 +8,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import co.edu.unicesi.sami.bo.CompetenciaBO;
+import co.edu.unicesi.sami.bo.MateriaBO;
 import co.edu.unicesi.sami.bo.MaterialBO;
 import co.edu.unicesi.sami.bo.MetaTerminalBO;
 import co.edu.unicesi.sami.bo.ObjetivoEspecificoBO;
@@ -18,6 +20,7 @@ import co.edu.unicesi.sami.bo.SaberBO;
 import co.edu.unicesi.sami.bo.SesionBO;
 import co.edu.unicesi.sami.bo.TrabajoAsignadoBO;
 import co.edu.unicesi.sami.bo.UnidadBO;
+import co.edu.unicesi.sami.entidades.CompetenciaEspecifica;
 import co.edu.unicesi.sami.entidades.Materia;
 import co.edu.unicesi.sami.entidades.Material;
 import co.edu.unicesi.sami.entidades.MetaTerminal;
@@ -126,52 +129,109 @@ public class GestionListadosBean implements GestionListadosRemote,
 
 	@Override
 	public List<MetaTerminalBO> listarMetasTerminalesPorCurso(String codigoCurso) {
-		String query = "SELECT DISTINCT (mt) FROM Materia c, Unidad u, MetaTerminal mt WHERE mt.unidade = u and u.curso.id = :idCurso";
-		Query q = em.createQuery(query);
-		q.setParameter("idCurso", codigoCurso);
-		List<MetaTerminal> metasTerminales = q.getResultList();
-		List<MetaTerminalBO> metasTerminalesBO = new ArrayList<MetaTerminalBO>();
+//		String query = "SELECT DISTINCT (mt) FROM Materia c, Unidad u, MetaTerminal mt WHERE mt.unidade = u and u.curso.id = :idCurso";
+//		Query q = em.createQuery(query);
+//		q.setParameter("idCurso", codigoCurso);
+//		List<MetaTerminal> metasTerminales = q.getResultList();
+//		List<MetaTerminalBO> metasTerminalesBO = new ArrayList<MetaTerminalBO>();
+//
+//		for (MetaTerminal mt : metasTerminales) {
+//			MetaTerminalBO bo = new MetaTerminalBO();
+//			bo.setId(mt.getId());
+//
+//			bo.setIdUnidad(mt.getUnidade().getId());
+//			bo.setNumeroUnidad(mt.getUnidade().getNumero());
+//			bo.setNombreUnidad(mt.getUnidade().getNombre());
+//			bo.setContenidoUnidad(mt.getUnidade().getContenido());
+//
+//			bo.setIdObjTerminal(mt.getObjetivosTerminale().getId());
+//			bo.setNombreObjTerminal(mt.getObjetivosTerminale().getNombre());
+//			bo.setContenidoObjTerminal(mt.getObjetivosTerminale()
+//					.getContenido());
+//
+//			metasTerminalesBO.add(bo);
+//		}
+//
+//		return metasTerminalesBO;
+		Materia curso = em.find(Materia.class, codigoCurso);
+		em.refresh(curso);
+		List<MetaTerminalBO> metasTerminales = new ArrayList<MetaTerminalBO>();
 
-		for (MetaTerminal mt : metasTerminales) {
-			MetaTerminalBO bo = new MetaTerminalBO();
-			bo.setId(mt.getId());
+		for (Unidad unidad : curso.getUnidades()) {
+			UnidadBO u = new UnidadBO();
+			u.setId(unidad.getId());
+			u.setNombre(unidad.getNombre());
+			u.setContenido(unidad.getContenido());
+			u.setNumero(unidad.getNumero());
+			for (MetaTerminal mt : unidad.getMetasTerminales()) {
+				MetaTerminalBO bo = new MetaTerminalBO();
+				bo.setId(mt.getId());
+	
+				bo.setIdUnidad(mt.getUnidade().getId());
+				bo.setNumeroUnidad(mt.getUnidade().getNumero());
+				bo.setNombreUnidad(mt.getUnidade().getNombre());
+				bo.setContenidoUnidad(mt.getUnidade().getContenido());
+	
+				bo.setIdObjTerminal(mt.getObjetivosTerminale().getId());
+				bo.setNombreObjTerminal(mt.getObjetivosTerminale().getNombre());
+				bo.setContenidoObjTerminal(mt.getObjetivosTerminale()
+						.getContenido());
+	
+				metasTerminales.add(bo);
+				
 
-			bo.setIdUnidad(mt.getUnidade().getId());
-			bo.setNumeroUnidad(mt.getUnidade().getNumero());
-			bo.setNombreUnidad(mt.getUnidade().getNombre());
-			bo.setContenidoUnidad(mt.getUnidade().getContenido());
-
-			bo.setIdObjTerminal(mt.getObjetivosTerminale().getId());
-			bo.setNombreObjTerminal(mt.getObjetivosTerminale().getNombre());
-			bo.setContenidoObjTerminal(mt.getObjetivosTerminale()
-					.getContenido());
-
-			metasTerminalesBO.add(bo);
+			}
 		}
 
-		return metasTerminalesBO;
+		return metasTerminales;
 	}
 
 	@Override
 	public List<ObjetivoEspecificoBO> listarObjEspecificosPorCurso(
 			String codigoCurso) {
-		String query = "SELECT DISTINCT (oe) FROM Materia c, Unidad u, MetaTerminal mt, ObjetivoEspecifico oe WHERE oe.metasTerminale = mt AND mt.unidade = u AND u.curso.id = :idCurso";
-		Query q = em.createQuery(query);
-		q.setParameter("idCurso", codigoCurso);
-		List<ObjetivoEspecifico> objEspecificos = q.getResultList();
-		List<ObjetivoEspecificoBO> objEspecificosBO = new ArrayList<ObjetivoEspecificoBO>();
+//		String query = "SELECT DISTINCT (oe) FROM Materia c, Unidad u, MetaTerminal mt, ObjetivoEspecifico oe WHERE oe.metasTerminale = mt AND mt.unidade = u AND u.curso.id = :idCurso";
+//		Query q = em.createQuery(query);
+//		q.setParameter("idCurso", codigoCurso);
+//		List<ObjetivoEspecifico> objEspecificos = q.getResultList();
+//		List<ObjetivoEspecificoBO> objEspecificosBO = new ArrayList<ObjetivoEspecificoBO>();
+//
+//		for (ObjetivoEspecifico oe : objEspecificos) {
+//			ObjetivoEspecificoBO bo = new ObjetivoEspecificoBO();
+//
+//			bo.setId(oe.getId());
+//			bo.setNombre(oe.getNombre());
+//			bo.setContenido(oe.getContenido());
+//
+//			objEspecificosBO.add(bo);
+//		}
+//
+//		return objEspecificosBO;
+		Materia curso = em.find(Materia.class, codigoCurso);
+		em.refresh(curso);
+		List<ObjetivoEspecificoBO> objetivosEspecificos = new ArrayList<ObjetivoEspecificoBO>();
 
-		for (ObjetivoEspecifico oe : objEspecificos) {
-			ObjetivoEspecificoBO bo = new ObjetivoEspecificoBO();
+		for (Unidad unidad : curso.getUnidades()) {
+			UnidadBO u = new UnidadBO();
+			u.setId(unidad.getId());
+			u.setNombre(unidad.getNombre());
+			u.setContenido(unidad.getContenido());
+			u.setNumero(unidad.getNumero());
+			for (MetaTerminal metaTerminal : unidad.getMetasTerminales()) {
+				MetaTerminalBO m = new MetaTerminalBO();
+				m.setId(metaTerminal.getId());
+				for (ObjetivoEspecifico objetivoEspecifico : metaTerminal
+						.getObjetivosEspecificos()) {
+					ObjetivoEspecificoBO e = new ObjetivoEspecificoBO();
+					e.setId(objetivoEspecifico.getId());
+					e.setContenido(objetivoEspecifico.getContenido());
+					e.setNombre(objetivoEspecifico.getNombre());
+					objetivosEspecificos.add(e);
+				}
 
-			bo.setId(oe.getId());
-			bo.setNombre(oe.getNombre());
-			bo.setContenido(oe.getContenido());
-
-			objEspecificosBO.add(bo);
+			}
 		}
 
-		return objEspecificosBO;
+		return objetivosEspecificos;
 	}
 
 	@Override
@@ -433,5 +493,25 @@ public class GestionListadosBean implements GestionListadosRemote,
 
 		return recursos;
 	}
+	
+	public List<CompetenciaBO> listarCompetencias() {
+		String query = "SELECT c FROM CompetenciaEspecifica c";
+		Query q = em.createQuery(query);
+		List<CompetenciaEspecifica> competencias = q.getResultList();
+
+		List<CompetenciaBO> competenciasBO = new ArrayList<CompetenciaBO>();
+
+		for (CompetenciaEspecifica c : competencias) {
+			CompetenciaBO bo = new CompetenciaBO();
+			bo.setId(c.getId());
+			bo.setNombre(c.getNombre());
+			bo.setDescripcion(c.getDescripcion());
+
+			competenciasBO.add(bo);
+		}
+
+		return competenciasBO;
+	}
+	
 
 }

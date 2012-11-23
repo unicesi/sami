@@ -2,6 +2,7 @@ package co.edu.unicesi.sami.client.listados;
 
 import java.util.List;
 
+import co.edu.unicesi.sami.bo.CompetenciaBO;
 import co.edu.unicesi.sami.bo.MaterialBO;
 import co.edu.unicesi.sami.bo.MetaTerminalBO;
 import co.edu.unicesi.sami.bo.ObjetivoEspecificoBO;
@@ -36,4 +37,5 @@ public interface ListadosService extends RemoteService
     public List<RecursoAsignadoBO> listarRecursosAsignadosPorTrabajoAsignado(int idTrabajoAsignado);
     public List<UnidadBO> listarUnidadesPorCurso(String codigoCurso);
     public List<RecursoBO> listarRecursosPorCurso(String codigoCurso);
+    public List<CompetenciaBO> listarCompetencias();
 }

@@ -2,6 +2,7 @@ package co.edu.unicesi.sami.client.controller;
 
 import java.util.List;
 
+import co.edu.unicesi.sami.bo.CompetenciaBO;
 import co.edu.unicesi.sami.bo.MateriaBO;
 import co.edu.unicesi.sami.bo.MaterialBO;
 import co.edu.unicesi.sami.bo.MetaTerminalBO;
@@ -21,6 +22,7 @@ import co.edu.unicesi.sami.client.home.TabPlanificador;
 import co.edu.unicesi.sami.client.home.TabRecursos;
 import co.edu.unicesi.sami.client.home.TabSaberes;
 import co.edu.unicesi.sami.client.home.TabUnidades;
+import co.edu.unicesi.sami.client.model.CompetenciaModel;
 import co.edu.unicesi.sami.client.model.MateriaModel;
 import co.edu.unicesi.sami.client.model.MaterialModel;
 import co.edu.unicesi.sami.client.model.MetaTerminalModel;
@@ -62,6 +64,7 @@ public class DTViewController extends Controller {
 		registerEventTypes(DTEvent.LISTAR_RECURSOS_DIALOGO_AGREGAR_SESION);
 		registerEventTypes(DTEvent.LISTAR_SESIONES_DIALOGO_GESTION_SESION);
 		registerEventTypes(DTEvent.LISTAR_TRABAJOS_DIALOGO_GESTION_SESION);
+		registerEventTypes(DTEvent.LISTAR_COMPETENCIAS);
 	}
 
 	@Override
@@ -310,11 +313,22 @@ public class DTViewController extends Controller {
 		else if(event.getType().equals(DTEvent.LISTAR_TRABAJOS_DIALOGO_GESTION_SESION)){
 			List<TrabajoAsignadoBO> trabajosAsignados=(List<TrabajoAsignadoBO>)event.getData();
 			ListStore<TrabajoAsignadoModel> objModel=new ListStore<TrabajoAsignadoModel>();
-			for(TrabajoAsignadoBO bo:trabajosAsignados){
+			for(TrabajoAsignadoBO bo : trabajosAsignados){
 				objModel.add(TrabajoAsignadoModel.toModelFromBO(bo));
 			}
 			TabPlanificador tabPlanificador=Registry.get("tabPlanificador");
 			tabPlanificador.actualizarTablaTrabajos(objModel);
+		}
+		else if(event.getType().equals(DTEvent.LISTAR_COMPETENCIAS)){
+			List<CompetenciaBO> competencias=(List<CompetenciaBO>)event.getData();
+			ListStore<CompetenciaModel> objModel=new ListStore<CompetenciaModel>();
+			for(CompetenciaBO bo : competencias){
+				objModel.add(CompetenciaModel.toModelFromBO(bo));
+			}
+			TabObjTerminales tabObjTerminales=Registry.get("tabObjTerminales");
+			tabObjTerminales.actualizarCompetencias(objModel);
+			TabObjEspecificos tabObjEspecificos=Registry.get("tabObjEspecificos");
+			tabObjEspecificos.actualizarCompetencias(objModel);
 		}
 	}
 }

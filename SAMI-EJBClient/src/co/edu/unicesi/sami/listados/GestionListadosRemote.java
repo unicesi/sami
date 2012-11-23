@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.ejb.Remote;
 
+import co.edu.unicesi.sami.bo.CompetenciaBO;
 import co.edu.unicesi.sami.bo.MaterialBO;
 import co.edu.unicesi.sami.bo.MetaTerminalBO;
 import co.edu.unicesi.sami.bo.ObjetivoEspecificoBO;
@@ -53,4 +54,5 @@ public interface GestionListadosRemote {
 	public List<UnidadBO> listarUnidadesPorCurso(String codigoCurso);
 
 	public List<RecursoBO> listarRecursosPorCurso(String codigoCurso);
+	public List<CompetenciaBO> listarCompetencias();
 }

@@ -6,6 +6,7 @@ import java.util.List;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
+import co.edu.unicesi.sami.bo.CompetenciaBO;
 import co.edu.unicesi.sami.bo.MaterialBO;
 import co.edu.unicesi.sami.bo.MetaTerminalBO;
 import co.edu.unicesi.sami.bo.ObjetivoEspecificoBO;
@@ -135,6 +136,12 @@ public class ListadosServiceImpl extends RemoteServiceServlet implements Listado
 	public List<RecursoBO> listarRecursosPorCurso(String codigoCurso) {
 		// TODO Auto-generated method stub
 		return listadosService.listarRecursosPorCurso(codigoCurso);
+	}
+
+	@Override
+	public List<CompetenciaBO> listarCompetencias() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

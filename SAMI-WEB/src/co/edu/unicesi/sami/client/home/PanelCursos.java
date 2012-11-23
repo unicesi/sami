@@ -102,8 +102,11 @@ public class PanelCursos extends LayoutContainer
         column.setAlignment( HorizontalAlignment.CENTER );
         configs.add( column );
 
-        column = new ColumnConfig( "nombre", MultiLingualConstants.columnCursos_nombre( ), 250 );
+        column = new ColumnConfig( "nombre", MultiLingualConstants.columnCursos_nombre( ), 100 );
         column.setAlignment( HorizontalAlignment.LEFT );
+        configs.add( column );
+        
+        column = new ColumnConfig( "creditos", "Créditos", 70 );
         configs.add( column );
 
         return new ColumnModel( configs );
