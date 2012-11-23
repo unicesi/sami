@@ -14,7 +14,7 @@
  *******************************************************************************/
 package co.edu.unicesi.sami.client.competencias;
 
-import co.edu.unicesi.sami.bo.CEOTBO;
+//import co.edu.unicesi.sami.bo.CEOTBO;
 import co.edu.unicesi.sami.bo.MetaTerminalBO;
 import co.edu.unicesi.sami.bo.ObjetivoEspecificoBO;
 import co.edu.unicesi.sami.bo.ObjetivoGeneralBO;
@@ -48,6 +48,6 @@ public interface CompetenciasService extends RemoteService
     public int eliminarMetaTerminal( MetaTerminalBO metaTerminal );
     public MetaTerminalBO buscarMetaTerminal( int idMetaTerminal );
     
-    public int agregarCEOT(CEOTBO ceot);
+//    public int agregarCEOT(CEOTBO ceot);
 
 }
