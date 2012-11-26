@@ -1,5 +1,6 @@
 package co.edu.unicesi.sami.client.home.dialogos;
 
+import co.edu.unicesi.sami.client.home.Mensajero;
 import co.edu.unicesi.sami.client.home.TabObjEspecificos;
 import co.edu.unicesi.sami.client.internationalization.MultiLingualConstants;
 
@@ -9,6 +10,7 @@ import com.extjs.gxt.ui.client.event.Events;
 import com.extjs.gxt.ui.client.event.Listener;
 import com.extjs.gxt.ui.client.event.SelectionListener;
 import com.extjs.gxt.ui.client.widget.Dialog;
+import com.extjs.gxt.ui.client.widget.Info;
 import com.extjs.gxt.ui.client.widget.Text;
 import com.extjs.gxt.ui.client.widget.form.TextArea;
 import com.extjs.gxt.ui.client.widget.form.TextField;
@@ -61,7 +63,12 @@ public class DialogoAgregarObjEspecifico extends Dialog
             @Override
             public void componentSelected( ButtonEvent ce )
             {
-                agregarObjEspecifico( );
+                if(agregarObjEspecifico( ) == Mensajero.AGREGAR)
+                {
+                }
+                else
+                	Info.display("Error", Mensajero.mostrarMensaje(agregarObjEspecifico()));
+                
                 limpiarDatos( );
             }
         } );
@@ -79,12 +86,16 @@ public class DialogoAgregarObjEspecifico extends Dialog
         } );
     }
 
-    private void agregarObjEspecifico( )
+    private int agregarObjEspecifico( )
     {
+    	if(txtNombre.getValue() == null || txtContenido.getValue() == null)
+    		return Mensajero.CAMPOSVACIOS;
+    	
         String nombre = txtNombre.getValue( );
         String contenido = txtContenido.getValue( );
         
         tabObjEspecificos.agregarObjEspecifico( nombre, contenido );
+        return Mensajero.AGREGAR;
     }    
     
     private void limpiarDatos( )
@@ -94,3 +105,4 @@ public class DialogoAgregarObjEspecifico extends Dialog
         hide( );
     }
 }
+

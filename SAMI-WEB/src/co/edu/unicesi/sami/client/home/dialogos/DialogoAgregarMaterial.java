@@ -1,5 +1,6 @@
 package co.edu.unicesi.sami.client.home.dialogos;
 
+import co.edu.unicesi.sami.client.home.Mensajero;
 import co.edu.unicesi.sami.client.home.TabMateriales;
 import co.edu.unicesi.sami.client.internationalization.MultiLingualConstants;
 
@@ -9,6 +10,7 @@ import com.extjs.gxt.ui.client.event.Events;
 import com.extjs.gxt.ui.client.event.Listener;
 import com.extjs.gxt.ui.client.event.SelectionListener;
 import com.extjs.gxt.ui.client.widget.Dialog;
+import com.extjs.gxt.ui.client.widget.Info;
 import com.extjs.gxt.ui.client.widget.form.TextField;
 import com.extjs.gxt.ui.client.widget.layout.AbsoluteData;
 import com.extjs.gxt.ui.client.widget.layout.AbsoluteLayout;
@@ -103,7 +105,12 @@ public class DialogoAgregarMaterial extends Dialog {
 				new SelectionListener<ButtonEvent>() {
 					@Override
 					public void componentSelected(ButtonEvent ce) {
-						agregarMaterial();
+						if(agregarMaterial() == Mensajero.AGREGAR)
+						{
+							
+						}
+						else
+							Info.display("Error", Mensajero.mostrarMensaje(agregarMaterial()));
 						limpiarDatos();
 					}
 				});
@@ -118,7 +125,7 @@ public class DialogoAgregarMaterial extends Dialog {
 		});
 	}
 
-	private void agregarMaterial() {
+	private int agregarMaterial() {
 		String fuente = listFuente.getItemText(listFuente.getSelectedIndex());
 		String idioma = listIdioma.getItemText(listIdioma.getSelectedIndex());
 		String autor = txtAutor.getValue();
@@ -126,7 +133,12 @@ public class DialogoAgregarMaterial extends Dialog {
 		String ano = txtAno.getValue();
 		String ciudad = txtCiudad.getValue();
 		String editorial = txtEditorial.getValue();
+		
+		if(fuente == null || idioma == null || autor == null || titulo == null || ano == null || ciudad == null || editorial == null)
+			return Mensajero.CAMPOSVACIOS;
+		
 		tabMateriales.agregarMaterial(fuente, idioma ,autor, titulo, ano ,ciudad ,editorial);
+		return Mensajero.AGREGAR;
 	}
 
 	private void limpiarDatos() {

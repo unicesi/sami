@@ -1,5 +1,6 @@
 package co.edu.unicesi.sami.client.home.dialogos;
 
+import co.edu.unicesi.sami.client.home.Mensajero;
 import co.edu.unicesi.sami.client.home.TabUnidades;
 import co.edu.unicesi.sami.client.internationalization.MultiLingualConstants;
 
@@ -9,6 +10,7 @@ import com.extjs.gxt.ui.client.event.Events;
 import com.extjs.gxt.ui.client.event.Listener;
 import com.extjs.gxt.ui.client.event.SelectionListener;
 import com.extjs.gxt.ui.client.widget.Dialog;
+import com.extjs.gxt.ui.client.widget.Info;
 import com.extjs.gxt.ui.client.widget.Text;
 import com.extjs.gxt.ui.client.widget.form.TextArea;
 import com.extjs.gxt.ui.client.widget.form.TextField;
@@ -68,9 +70,13 @@ public class DialogoAgregarUnidad extends Dialog {
 				new SelectionListener<ButtonEvent>() {
 					@Override
 					public void componentSelected(ButtonEvent ce) {
-						agregarUnidad();
-						limpiarDatos();
+							
+							if(agregarUnidad() != 0)
+								Info.display("Error", Mensajero.mostrarMensaje(agregarUnidad()));
+							
+							limpiarDatos();
 					}
+					
 				});
 	}
 
@@ -83,11 +89,27 @@ public class DialogoAgregarUnidad extends Dialog {
 		});
 	}
 
-	private void agregarUnidad() {
+	private int agregarUnidad(){
+		
+		if(txtNombre.getValue() == null ||
+		   txtContenido.getValue()== null ||
+		   txtNumero.getValue() == null)
+			return Mensajero.CAMPOSVACIOS;
+		
 		String nombre = txtNombre.getValue();
 		String contenido = txtContenido.getValue();
-		int numero = Integer.parseInt(txtNumero.getValue());
+		int numero = 0;
+		try
+		{
+			numero = Integer.parseInt(txtNumero.getValue());
+		}
+		catch(Exception e)
+		{
+			return Mensajero.ERRORFORMATO;
+		}
+		
 		tabUnidades.agregarUnidad(nombre, numero, contenido);
+		return 0;
 	}
 
 	private void limpiarDatos() {

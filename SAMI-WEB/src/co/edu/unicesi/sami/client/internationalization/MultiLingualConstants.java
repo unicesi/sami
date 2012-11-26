@@ -9,6 +9,9 @@ public interface MultiLingualConstants extends Constants
     String msgAgregar( );
     String msgEditar( );
     String msgEliminar( );
+    String msgExistente();
+    String msgCamposVacios();
+    String msgErrorFormato();
     String msgError( );
     String msgSaber();
     String noSelectedMetaTerminal();

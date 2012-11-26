@@ -1,5 +1,6 @@
 package co.edu.unicesi.sami.client.home.dialogos;
 
+import co.edu.unicesi.sami.client.home.Mensajero;
 import co.edu.unicesi.sami.client.home.TabSaberes;
 import co.edu.unicesi.sami.client.internationalization.MultiLingualConstants;
 
@@ -9,6 +10,7 @@ import com.extjs.gxt.ui.client.event.Events;
 import com.extjs.gxt.ui.client.event.Listener;
 import com.extjs.gxt.ui.client.event.SelectionListener;
 import com.extjs.gxt.ui.client.widget.Dialog;
+import com.extjs.gxt.ui.client.widget.Info;
 import com.extjs.gxt.ui.client.widget.Text;
 import com.extjs.gxt.ui.client.widget.form.TextArea;
 import com.extjs.gxt.ui.client.widget.form.TextField;
@@ -71,7 +73,13 @@ public class DialogoAgregarSaber extends Dialog
             @Override
             public void componentSelected( ButtonEvent ce )
             {
-                agregarSaber( );
+                if(agregarSaber( ) == Mensajero.AGREGAR)
+                {
+                	
+                }
+                else
+                	Info.display("Error", Mensajero.mostrarMensaje(agregarSaber()));
+                
                 limpiarDatos( );
             }
         } );
@@ -89,13 +97,20 @@ public class DialogoAgregarSaber extends Dialog
         } );
     }
     
-    private void agregarSaber()
+    private int agregarSaber()
     {
+    	if(txtNombre.getValue() == null || txtContenido.getValue() == null || txtTipo.getValue() == null)
+    		return Mensajero.CAMPOSVACIOS;
+    	
         String nombre = txtNombre.getValue( );
         String contenido = txtContenido.getValue( );
         String tipo = txtTipo.getValue( );
         
+        if(!tipo.equalsIgnoreCase("h") && !tipo.equalsIgnoreCase("c"))
+        	return Mensajero.ERRORFORMATO;
+        
         tabSaberes.agregarSaber( nombre, tipo, contenido );
+        return Mensajero.AGREGAR;
     }
     
     private void limpiarDatos( )

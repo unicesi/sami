@@ -13,6 +13,9 @@ public class Mensajero
     public static final int EDITAR = 1;
     public static final int ELIMINAR = 2;
     public static final int ERROR = -1;
+    public static final int EXISTENTE = 3;
+    public static final int CAMPOSVACIOS = 4;
+    public static final int ERRORFORMATO = 5;
     
     private Mensajero()
     {
@@ -33,7 +36,19 @@ public class Mensajero
                 break;
             case ELIMINAR:
                 mensaje = MultiLingualConstants.msgEliminar( );
-                break;            
+                break;
+                
+            case EXISTENTE:
+            	mensaje = MultiLingualConstants.msgExistente();
+            	break;
+            	
+            case CAMPOSVACIOS:
+            	mensaje = MultiLingualConstants.msgCamposVacios();
+            	break;
+            	
+            case ERRORFORMATO:
+            	mensaje = MultiLingualConstants.msgErrorFormato();
+            	break;
         }
         
         return mensaje;

@@ -41,19 +41,37 @@ public class GestionPlanificadorBean implements GestionPlanificadorRemote, Gesti
 		try {
 			Materia curso=em.find(Materia.class, material.getCodigoCurso());
 
-            entidad.setFuente( material.getFuente( ) );
-            entidad.setAno( material.getAno( ) );
-            entidad.setAutor(material.getAutor( ));
-            entidad.setCiudad( material.getCiudad( ) );
-            entidad.setEditorial(material.getEditorial( ) );
-            entidad.setIdioma( material.getIdioma( ) );
-            entidad.setTitulo( material.getTitulo( ) );
-			entidad.setRecursos(new ArrayList<Recurso>());
-			entidad.setMateria(curso);
+			for (int i = 0; i < curso.getMateriales().size(); i++) {
+				
+				Material mataux = curso.getMateriales().get(i);
+				
+				if(
+				mataux.getAno().equals(material.getAno()) &&
+				mataux.getAutor().equals(material.getAutor()) &&
+				mataux.getCiudad().equals(material.getCiudad()) &&
+				mataux.getEditorial().equals(material.getEditorial()) &&
+				mataux.getFuente().equals(material.getFuente()) &&
+				mataux.getIdioma().equals(material.getIdioma()) &&
+				mataux.getTitulo().equals(material.getTitulo()))
+					resp = 3;
+				
+			}
+			if(resp != 3)
+			{
+	            entidad.setFuente( material.getFuente( ) );
+	            entidad.setAno( material.getAno( ) );
+	            entidad.setAutor(material.getAutor( ));
+	            entidad.setCiudad( material.getCiudad( ) );
+	            entidad.setEditorial(material.getEditorial( ) );
+	            entidad.setIdioma( material.getIdioma( ) );
+	            entidad.setTitulo( material.getTitulo( ) );
+				entidad.setRecursos(new ArrayList<Recurso>());
+				entidad.setMateria(curso);
 
-			em.persist(entidad);
-
-			resp=0;
+				em.persist(entidad);
+	
+				resp=0;
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -121,16 +139,28 @@ public class GestionPlanificadorBean implements GestionPlanificadorRemote, Gesti
 
 		try {
 			ObjetivoEspecifico objetivoEspefico=em.find(ObjetivoEspecifico.class, saber.getIdObjEspecifico());
-
-			entidad.setContenido(saber.getContenido());
-			entidad.setNombre(saber.getNombre());
-			entidad.setRecursos(new ArrayList<Recurso>());
-			entidad.setTipo(saber.getTipo());
-			entidad.setObjetivosEspecifico(objetivoEspefico);
-
-			em.persist(entidad);
-
-			resp=0;
+			
+			for (int i = 0; i < objetivoEspefico.getSaberes().size(); i++) {
+				
+				Saber saberaux = objetivoEspefico.getSaberes().get(i);
+				
+				if(saberaux.getNombre().equals(saber.getNombre()))
+					resp = 3;
+				
+			}
+			
+			if(resp != 3)
+			{
+				entidad.setContenido(saber.getContenido());
+				entidad.setNombre(saber.getNombre());
+				entidad.setRecursos(new ArrayList<Recurso>());
+				entidad.setTipo(saber.getTipo());
+				entidad.setObjetivosEspecifico(objetivoEspefico);
+	
+				em.persist(entidad);
+	
+				resp=0;
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -265,15 +295,25 @@ public class GestionPlanificadorBean implements GestionPlanificadorRemote, Gesti
 
 		try {
 			Unidad unidad=em.find(Unidad.class, sesion.getIdUnidad());
-
-			entidad.setNombre(sesion.getNombre());
-			entidad.setNumero(sesion.getNumero());
-			entidad.setTrabajosAsignados(new ArrayList<TrabajoAsignado>());
-			entidad.setUnidade(unidad);
-
-			em.persist(entidad);
-
-			resp=0;
+			
+			for (int i = 0; i < unidad.getSesiones().size(); i++) {
+				
+				Sesion sesionAux = unidad.getSesiones().get(i);
+				
+				if(sesionAux.getNombre().equals(sesion.getNombre()) && sesionAux.getNumero() == sesion.getNumero())
+					resp = 3;
+			}
+			if(resp != 3)
+			{
+				entidad.setNombre(sesion.getNombre());
+				entidad.setNumero(sesion.getNumero());
+				entidad.setTrabajosAsignados(new ArrayList<TrabajoAsignado>());
+				entidad.setUnidade(unidad);
+	
+				em.persist(entidad);
+	
+				resp=0;
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -333,16 +373,25 @@ public class GestionPlanificadorBean implements GestionPlanificadorRemote, Gesti
 
 		try {
 			Sesion sesion=em.find(Sesion.class, trabajoAsignado.getIdSesion());
-
-			entidad.setContenido(trabajoAsignado.getContenido());
-			entidad.setEncargado(trabajoAsignado.getEncargado());
-			entidad.setRecursosAsignados(new ArrayList<RecursoAsignado>());
-			entidad.setTipo(trabajoAsignado.getTipo());
-			entidad.setSesione(sesion);
-
-			em.persist(entidad);
-
-			resp=0;
+			
+			for (int i = 0; i < sesion.getTrabajosAsignados().size(); i++) {
+				TrabajoAsignado trabAux = sesion.getTrabajosAsignados().get(i);
+				
+				if(trabAux.getTipo().equals(trabajoAsignado.getTipo()) && trabAux.getEncargado().equals(trabajoAsignado.getEncargado()))
+					resp = 3;
+			}
+			if(resp != 3)
+			{
+				entidad.setContenido(trabajoAsignado.getContenido());
+				entidad.setEncargado(trabajoAsignado.getEncargado());
+				entidad.setRecursosAsignados(new ArrayList<RecursoAsignado>());
+				entidad.setTipo(trabajoAsignado.getTipo());
+				entidad.setSesione(sesion);
+	
+				em.persist(entidad);
+	
+				resp=0;
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

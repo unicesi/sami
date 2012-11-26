@@ -44,17 +44,31 @@ public class GestionCompetenciasBean implements GestionCompetenciasRemote,
 
 		try {
 			Materia curso = em.find(Materia.class, unidad.getCodigoCurso());
-
-			entidad.setNumero(unidad.getNumero());
-			entidad.setNombre(unidad.getNombre());
-			entidad.setContenido(unidad.getContenido());
-			entidad.setMateria(curso);
-			entidad.setMetasTerminales(new ArrayList<MetaTerminal>());
-			entidad.setSesiones(new ArrayList<Sesion>());
-
-			em.persist(entidad);
-			em.flush();
-			resp = 0;
+			
+			for (int i = 0; i < curso.getUnidades().size(); i++) {
+				
+				Unidad uniAux = curso.getUnidades().get(i);
+				
+				if(uniAux.getNombre().equals(unidad.getNombre()) &&
+				   uniAux.getNumero() == unidad.getNumero())
+				resp = 3;
+			}
+			
+			if(resp != 3)
+			{
+				entidad.setNumero(unidad.getNumero());
+				entidad.setNombre(unidad.getNombre());
+				entidad.setContenido(unidad.getContenido());
+				entidad.setMateria(curso);
+				entidad.setMetasTerminales(new ArrayList<MetaTerminal>());
+				entidad.setSesiones(new ArrayList<Sesion>());
+				
+				em.persist(entidad);
+				em.flush();
+				resp = 0;
+			}
+			
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -179,15 +193,27 @@ public class GestionCompetenciasBean implements GestionCompetenciasRemote,
 		try {
 			Materia curso = em
 					.find(Materia.class, objTerminal.getCodigoCurso());
-
-			entidad.setNombre(objTerminal.getNombre());
-			entidad.setContenido(objTerminal.getContenido());
-			entidad.setMateria(curso);
-			entidad.setMetasTerminales(new ArrayList<MetaTerminal>());
-
-			em.persist(entidad);
-			em.flush();
-			resp = 0;
+			
+			for (int i = 0; i < curso.getObjetivosTerminales().size(); i++) {
+				
+				ObjetivoTerminal otaux = curso.getObjetivosTerminales().get(i);
+				
+				if(otaux.getNombre().equals(objTerminal.getNombre()))
+					resp = 3;
+				
+			}
+			
+			if(resp != 3)
+			{
+				entidad.setNombre(objTerminal.getNombre());
+				entidad.setContenido(objTerminal.getContenido());
+				entidad.setMateria(curso);
+				entidad.setMetasTerminales(new ArrayList<MetaTerminal>());
+	
+				em.persist(entidad);
+				em.flush();
+				resp = 0;
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -247,15 +273,27 @@ public class GestionCompetenciasBean implements GestionCompetenciasRemote,
 		try {
 			MetaTerminal metaTerminal = em.find(MetaTerminal.class,
 					objEspecifico.getIdMetaTerminal());
-
-			entidad.setNombre(objEspecifico.getNombre());
-			entidad.setContenido(objEspecifico.getContenido());
-			entidad.setMetasTerminale(metaTerminal);
-			entidad.setSaberes(new ArrayList<Saber>());
-
-			em.persist(entidad);
-			em.flush();
-			resp = 0;
+			
+			for (int i = 0; i < metaTerminal.getObjetivosEspecificos().size(); i++) {
+				
+				ObjetivoEspecifico oeaux = metaTerminal.getObjetivosEspecificos().get(i);
+				
+				if(oeaux.getNombre().equals(objEspecifico.getNombre()))
+					resp = 3;
+				
+			}
+			
+			if(resp != 3)
+			{
+				entidad.setNombre(objEspecifico.getNombre());
+				entidad.setContenido(objEspecifico.getContenido());
+				entidad.setMetasTerminale(metaTerminal);
+				entidad.setSaberes(new ArrayList<Saber>());
+	
+				em.persist(entidad);
+				em.flush();
+				resp = 0;
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

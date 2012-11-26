@@ -1,4 +1,5 @@
 package co.edu.unicesi.sami.client.home.dialogos;
+import co.edu.unicesi.sami.client.home.Mensajero;
 import co.edu.unicesi.sami.client.home.TabUnidades;
 import co.edu.unicesi.sami.client.internationalization.MultiLingualConstants;
 
@@ -8,6 +9,7 @@ import com.extjs.gxt.ui.client.event.Events;
 import com.extjs.gxt.ui.client.event.Listener;
 import com.extjs.gxt.ui.client.event.SelectionListener;
 import com.extjs.gxt.ui.client.widget.Dialog;
+import com.extjs.gxt.ui.client.widget.Info;
 import com.extjs.gxt.ui.client.widget.Text;
 import com.extjs.gxt.ui.client.widget.form.TextArea;
 import com.extjs.gxt.ui.client.widget.form.TextField;
@@ -68,7 +70,12 @@ public class DialogoAgregarTrabajoAsignado extends Dialog {
 				new SelectionListener<ButtonEvent>() {
 					@Override
 					public void componentSelected(ButtonEvent ce) {
-						agregarTrabajoAsignado();
+						if(agregarTrabajoAsignado() == 0)
+						{
+							
+						}
+						else
+							Info.display("Error", Mensajero.mostrarMensaje(agregarTrabajoAsignado()));
 						limpiarDatos();
 					}
 				});
@@ -83,11 +90,26 @@ public class DialogoAgregarTrabajoAsignado extends Dialog {
 		});
 	}
 
-	private void agregarTrabajoAsignado() {
+	private int agregarTrabajoAsignado() {
+		
+		if(txtEncargado.getValue() == null || txtContenido.getValue() == null || txtTipo == null)
+			return Mensajero.CAMPOSVACIOS;
+		
 		String encargado = txtEncargado.getValue();
+		
+		if(!encargado.equals("E") && !encargado.equals("P"))
+			return Mensajero.ERRORFORMATO;
+		
 		String contenido = txtContenido.getValue();
 		String tipo = txtTipo.getValue();
+		
+		if(!tipo.equalsIgnoreCase("ANTES") && 
+				!tipo.equalsIgnoreCase("DURANTE") &&
+				!tipo.equalsIgnoreCase("DESPUES"))
+			return Mensajero.ERRORFORMATO;
+		
 		dialogSesion.agregarTrabajoAsignado(encargado, tipo, contenido);
+		return Mensajero.AGREGAR;
 	}
 
 	private void limpiarDatos() {
@@ -97,4 +119,5 @@ public class DialogoAgregarTrabajoAsignado extends Dialog {
 		hide();
 	}
 }
+
 
